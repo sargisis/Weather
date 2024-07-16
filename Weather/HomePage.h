@@ -1,6 +1,10 @@
 #ifndef HOMEPAGE_H
 #define HOMEPAGE_H
 
+#include "LeftLayout.h"
+#include "RightLayout.h"
+
+
 #include <QtWidgets>
 #include <QLabel>
 
@@ -12,15 +16,15 @@ public:
 public:
     void createLayout();
 private:
-    QGridLayout* main_layout = nullptr;
-    QHBoxLayout* header_layout = nullptr;
-    QLabel* header_label = nullptr;
+    QGridLayout* main_layout {nullptr};
 
-    QVBoxLayout* left_layout = nullptr;
-    QLabel* left_label = nullptr;
+    QHBoxLayout* m_header_layout {nullptr};
+    QLabel* m_header_label {nullptr};
 
-    QVBoxLayout* right_layout = nullptr;
-    QLabel* right_label = nullptr;
+    LeftLayout* m_left_layout;
+
+    RightLayout* m_right_layout;
+
 };
 
 #endif // HOMEPAGE_H

@@ -99,6 +99,8 @@ Weather_autogen/timestamp: \
   /Users/ONLYPROGRAMMING/Desktop/Weather/Weather/HomePage.h \
   /Users/ONLYPROGRAMMING/Desktop/Weather/Weather/LeftLayout.cpp \
   /Users/ONLYPROGRAMMING/Desktop/Weather/Weather/LeftLayout.h \
+  /Users/ONLYPROGRAMMING/Desktop/Weather/Weather/RightLayout.cpp \
+  /Users/ONLYPROGRAMMING/Desktop/Weather/Weather/RightLayout.h \
   .qtc/package-manager/auto-setup.cmake \
   CMakeFiles/3.27.7/CMakeCXXCompiler.cmake \
   CMakeFiles/3.27.7/CMakeSystem.cmake \
@@ -512,7 +514,6 @@ Weather_autogen/timestamp: \
   /Users/ONLYPROGRAMMING/folder/6.8.0/macos/lib/QtWidgets.framework/Versions/A/Headers/QLabel \
   /Users/ONLYPROGRAMMING/folder/6.8.0/macos/lib/QtWidgets.framework/Versions/A/Headers/QLayout \
   /Users/ONLYPROGRAMMING/folder/6.8.0/macos/lib/QtWidgets.framework/Versions/A/Headers/QMainWindow \
-  /Users/ONLYPROGRAMMING/folder/6.8.0/macos/lib/QtWidgets.framework/Versions/A/Headers/QPushButton \
   /Users/ONLYPROGRAMMING/folder/6.8.0/macos/lib/QtWidgets.framework/Versions/A/Headers/QScrollerProperties \
   /Users/ONLYPROGRAMMING/folder/6.8.0/macos/lib/QtWidgets.framework/Versions/A/Headers/QVBoxLayout \
   /Users/ONLYPROGRAMMING/folder/6.8.0/macos/lib/QtWidgets.framework/Versions/A/Headers/QWidget \
