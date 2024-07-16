@@ -1,24 +1,20 @@
 #ifndef LEFTLAYOUT_H
 #define LEFTLAYOUT_H
 
+#include <QLabel>
 #include <QVBoxLayout>
-#include <QPushButton>
 #include <QWidget>
-#include <QtWidgets>
 
-class LeftLayout : public QWidget
+
+class LeftLayout : public QVBoxLayout
 {
-  Q_OBJECT
 public:
-    LeftLayout(QWidget* parent = nullptr);
+   explicit LeftLayout(QWidget* parent = nullptr);
 public:
-    void createButtons();
+    void createLeftLayout();
 private:
-    QPushButton* bt1 = new QPushButton;
-    QPushButton* bt2 = new QPushButton;
-    QPushButton* bt3 = new QPushButton;
-    QVBoxLayout* main_layout = nullptr;
-
+    QVBoxLayout* m_left_layout {nullptr};
+    QLabel* m_left_label {nullptr};
 };
 
 #endif // LEFTLAYOUT_H

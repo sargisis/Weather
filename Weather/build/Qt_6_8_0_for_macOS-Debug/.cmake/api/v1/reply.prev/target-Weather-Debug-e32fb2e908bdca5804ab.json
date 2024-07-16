@@ -45,7 +45,7 @@
 			{
 				"command" : 3,
 				"file" : 1,
-				"line" : 30,
+				"line" : 28,
 				"parent" : 0
 			},
 			{
@@ -69,13 +69,13 @@
 			{
 				"command" : 4,
 				"file" : 1,
-				"line" : 64,
+				"line" : 65,
 				"parent" : 0
 			},
 			{
 				"command" : 5,
 				"file" : 1,
-				"line" : 48,
+				"line" : 49,
 				"parent" : 0
 			},
 			{
@@ -292,18 +292,20 @@
 				1,
 				2,
 				6,
-				8
+				8,
+				10,
+				12
 			]
 		}
 	],
 	"dependencies" : 
 	[
 		{
-			"id" : "Weather_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
-		},
-		{
 			"backtrace" : 0,
 			"id" : "Weather_autogen::@6890427a1f51a3e7e1df"
+		},
+		{
+			"id" : "Weather_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
 		}
 	],
 	"id" : "Weather::@6890427a1f51a3e7e1df",
@@ -409,7 +411,9 @@
 				1,
 				2,
 				6,
-				8
+				8,
+				10,
+				12
 			]
 		},
 		{
@@ -419,7 +423,9 @@
 				3,
 				5,
 				7,
-				9
+				9,
+				11,
+				13
 			]
 		},
 		{
@@ -427,14 +433,14 @@
 			"sourceIndexes" : 
 			[
 				4,
-				10
+				14
 			]
 		},
 		{
 			"name" : "CMake Rules",
 			"sourceIndexes" : 
 			[
-				11
+				15
 			]
 		}
 	],
@@ -471,6 +477,17 @@
 		},
 		{
 			"backtrace" : 4,
+			"path" : "HomePage.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "HomePage.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
 			"path" : "LeftLayout.h",
 			"sourceGroupIndex" : 1
 		},
@@ -482,13 +499,24 @@
 		},
 		{
 			"backtrace" : 4,
-			"path" : "HomePage.h",
+			"path" : "RightLayout.h",
 			"sourceGroupIndex" : 1
 		},
 		{
 			"backtrace" : 4,
 			"compileGroupIndex" : 0,
-			"path" : "HomePage.cpp",
+			"path" : "RightLayout.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"path" : "HeaderLayout.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "HeaderLayout.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{

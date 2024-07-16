@@ -21,8 +21,6 @@ set(PROJECT_SOURCES
     mainwindow.cpp
     mainwindow.h
     mainwindow.ui
-    LeftLayout.h
-    LeftLayout.cpp
 )
 
 # Configure target based on Qt version
@@ -31,6 +29,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
         HomePage.h HomePage.cpp
+        LeftLayout.h LeftLayout.cpp
+        RightLayout.h RightLayout.cpp
     )
 else()
     if(ANDROID)

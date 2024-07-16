@@ -1,17 +1,13 @@
 #include "LeftLayout.h"
 
-
 LeftLayout::LeftLayout(QWidget* parent)
-    : QWidget(parent)
-{
-    createButtons();
-}
+    : QVBoxLayout(parent)
+{}
 
-void LeftLayout::createButtons()
+void LeftLayout::createLeftLayout()
 {
-    main_layout = new QVBoxLayout;
-    main_layout->addWidget(bt1);
-    main_layout->addWidget(bt2);
-    main_layout->addWidget(bt3);
-
+    m_left_layout = new QVBoxLayout;
+    m_left_label = new QLabel("left label");
+    m_left_label->setStyleSheet("background-color: yellow; color: blue");
+    addWidget(m_left_label);
 }

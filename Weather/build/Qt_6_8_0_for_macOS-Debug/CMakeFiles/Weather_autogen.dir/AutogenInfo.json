@@ -303,6 +303,12 @@
 			null
 		],
 		[
+			"/Users/ONLYPROGRAMMING/Desktop/Weather/Weather/RightLayout.h",
+			"MU",
+			"EWIEGA46WW/moc_RightLayout.cpp",
+			null
+		],
+		[
 			"/Users/ONLYPROGRAMMING/Desktop/Weather/Weather/mainwindow.h",
 			"MU",
 			"EWIEGA46WW/moc_mainwindow.cpp",
@@ -373,6 +379,11 @@
 		],
 		[
 			"/Users/ONLYPROGRAMMING/Desktop/Weather/Weather/LeftLayout.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/ONLYPROGRAMMING/Desktop/Weather/Weather/RightLayout.cpp",
 			"MU",
 			null
 		],
