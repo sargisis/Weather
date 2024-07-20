@@ -95,8 +95,14 @@ Weather_autogen/timestamp: \
 	/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/sys/syslimits.h \
 	/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/sys/wait.h \
 	/Users/ONLYPROGRAMMING/Desktop/Weather/Weather/CMakeLists.txt \
+	/Users/ONLYPROGRAMMING/Desktop/Weather/Weather/CenterLayout.cpp \
+	/Users/ONLYPROGRAMMING/Desktop/Weather/Weather/CenterLayout.h \
+	/Users/ONLYPROGRAMMING/Desktop/Weather/Weather/HeaderLayout.cpp \
+	/Users/ONLYPROGRAMMING/Desktop/Weather/Weather/HeaderLayout.h \
 	/Users/ONLYPROGRAMMING/Desktop/Weather/Weather/HomePage.cpp \
 	/Users/ONLYPROGRAMMING/Desktop/Weather/Weather/HomePage.h \
+	/Users/ONLYPROGRAMMING/Desktop/Weather/Weather/Layouts.cpp \
+	/Users/ONLYPROGRAMMING/Desktop/Weather/Weather/Layouts.h \
 	/Users/ONLYPROGRAMMING/Desktop/Weather/Weather/LeftLayout.cpp \
 	/Users/ONLYPROGRAMMING/Desktop/Weather/Weather/LeftLayout.h \
 	/Users/ONLYPROGRAMMING/Desktop/Weather/Weather/RightLayout.cpp \
@@ -514,6 +520,7 @@ Weather_autogen/timestamp: \
 	/Users/ONLYPROGRAMMING/folder/6.8.0/macos/lib/QtWidgets.framework/Versions/A/Headers/QLabel \
 	/Users/ONLYPROGRAMMING/folder/6.8.0/macos/lib/QtWidgets.framework/Versions/A/Headers/QLayout \
 	/Users/ONLYPROGRAMMING/folder/6.8.0/macos/lib/QtWidgets.framework/Versions/A/Headers/QMainWindow \
+	/Users/ONLYPROGRAMMING/folder/6.8.0/macos/lib/QtWidgets.framework/Versions/A/Headers/QPushButton \
 	/Users/ONLYPROGRAMMING/folder/6.8.0/macos/lib/QtWidgets.framework/Versions/A/Headers/QScrollerProperties \
 	/Users/ONLYPROGRAMMING/folder/6.8.0/macos/lib/QtWidgets.framework/Versions/A/Headers/QVBoxLayout \
 	/Users/ONLYPROGRAMMING/folder/6.8.0/macos/lib/QtWidgets.framework/Versions/A/Headers/QWidget \

@@ -95,6 +95,8 @@
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/sys/stdio.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/sys/syslimits.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/sys/wait.h \
+  /Users/ONLYPROGRAMMING/Desktop/Weather/Weather/CenterLayout.h \
+  /Users/ONLYPROGRAMMING/Desktop/Weather/Weather/Layouts.h \
   /Users/ONLYPROGRAMMING/Desktop/Weather/Weather/LeftLayout.h \
   /Users/ONLYPROGRAMMING/Desktop/Weather/Weather/RightLayout.h \
   /Users/ONLYPROGRAMMING/folder/6.8.0/macos/lib/QtCore.framework/Versions/A/Headers/QDeadlineTimer \
@@ -502,6 +504,7 @@
   /Users/ONLYPROGRAMMING/folder/6.8.0/macos/lib/QtWidgets.framework/Versions/A/Headers/QCommonStyle \
   /Users/ONLYPROGRAMMING/folder/6.8.0/macos/lib/QtWidgets.framework/Versions/A/Headers/QLabel \
   /Users/ONLYPROGRAMMING/folder/6.8.0/macos/lib/QtWidgets.framework/Versions/A/Headers/QLayout \
+  /Users/ONLYPROGRAMMING/folder/6.8.0/macos/lib/QtWidgets.framework/Versions/A/Headers/QPushButton \
   /Users/ONLYPROGRAMMING/folder/6.8.0/macos/lib/QtWidgets.framework/Versions/A/Headers/QScrollerProperties \
   /Users/ONLYPROGRAMMING/folder/6.8.0/macos/lib/QtWidgets.framework/Versions/A/Headers/QVBoxLayout \
   /Users/ONLYPROGRAMMING/folder/6.8.0/macos/lib/QtWidgets.framework/Versions/A/Headers/QWidget \
