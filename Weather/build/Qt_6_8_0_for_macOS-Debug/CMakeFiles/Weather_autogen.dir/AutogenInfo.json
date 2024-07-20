@@ -291,9 +291,27 @@
 	"HEADERS" : 
 	[
 		[
+			"/Users/ONLYPROGRAMMING/Desktop/Weather/Weather/CenterLayout.h",
+			"MU",
+			"EWIEGA46WW/moc_CenterLayout.cpp",
+			null
+		],
+		[
+			"/Users/ONLYPROGRAMMING/Desktop/Weather/Weather/HeaderLayout.h",
+			"MU",
+			"EWIEGA46WW/moc_HeaderLayout.cpp",
+			null
+		],
+		[
 			"/Users/ONLYPROGRAMMING/Desktop/Weather/Weather/HomePage.h",
 			"MU",
 			"EWIEGA46WW/moc_HomePage.cpp",
+			null
+		],
+		[
+			"/Users/ONLYPROGRAMMING/Desktop/Weather/Weather/Layouts.h",
+			"MU",
+			"EWIEGA46WW/moc_Layouts.cpp",
 			null
 		],
 		[
@@ -373,7 +391,22 @@
 	"SOURCES" : 
 	[
 		[
+			"/Users/ONLYPROGRAMMING/Desktop/Weather/Weather/CenterLayout.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/ONLYPROGRAMMING/Desktop/Weather/Weather/HeaderLayout.cpp",
+			"MU",
+			null
+		],
+		[
 			"/Users/ONLYPROGRAMMING/Desktop/Weather/Weather/HomePage.cpp",
+			"MU",
+			null
+		],
+		[
+			"/Users/ONLYPROGRAMMING/Desktop/Weather/Weather/Layouts.cpp",
 			"MU",
 			null
 		],

@@ -3,7 +3,7 @@
 
 #include "LeftLayout.h"
 #include "RightLayout.h"
-
+#include "CenterLayout.h"
 
 #include <QtWidgets>
 #include <QLabel>
@@ -16,6 +16,7 @@ public:
 public:
     void createLayout();
 private:
+    QWidget* m_central_widget;
     QGridLayout* main_layout {nullptr};
 
     QHBoxLayout* m_header_layout {nullptr};
@@ -24,6 +25,8 @@ private:
     LeftLayout* m_left_layout;
 
     RightLayout* m_right_layout;
+
+    CenterLayout* m_center_layout;
 
 };
 

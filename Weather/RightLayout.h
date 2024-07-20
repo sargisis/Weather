@@ -5,13 +5,15 @@
 #include <QWidget>
 #include <QLabel>
 
+#include "Layouts.h"
 
-class RightLayout : public QVBoxLayout
+
+class RightLayout : public QVBoxLayout , public Layouts
 {
 public:
   explicit RightLayout(QWidget* parent = nullptr);
 public:
-  void createRightLayout();
+  virtual void createLayouts() override;
 private:
   QVBoxLayout* m_right_layout {nullptr};
   QLabel* m_right_label {nullptr};
