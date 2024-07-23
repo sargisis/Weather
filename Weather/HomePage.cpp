@@ -4,7 +4,7 @@
 HomePage::HomePage(QWidget* parent)
     : QWidget(parent)
 {
-    setFixedSize(700,700);
+    setFixedSize(800,800);
     createLayout();
     setWindowTitle("Weather");
     m_left_layout->createLayouts();
@@ -21,7 +21,7 @@ void HomePage::createLayout()
     m_header_layout = new QHBoxLayout();
     m_header_label = new QLabel("Header Layout");
     m_header_label->setStyleSheet("background-color: blue; color: white;");
-    m_header_label->setFixedSize(700,200);
+    // m_header_label->setFixedSize(800,200);
     m_header_layout->addWidget(m_header_label);
 
     m_left_layout = new LeftLayout();
