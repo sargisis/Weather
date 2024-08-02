@@ -113,14 +113,6 @@ build CMakeFiles/Weather.dir/Layouts.cpp.o: CXX_COMPILER__Weather_unscanned_Debu
   OBJECT_DIR = CMakeFiles/Weather.dir
   OBJECT_FILE_DIR = CMakeFiles/Weather.dir
 
-build CMakeFiles/Weather.dir/HeaderLayout.cpp.o: CXX_COMPILER__Weather_unscanned_Debug /Users/ONLYPROGRAMMING/Desktop/Weather/Weather/HeaderLayout.cpp || cmake_object_order_depends_target_Weather
-  DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB
-  DEP_FILE = CMakeFiles/Weather.dir/HeaderLayout.cpp.o.d
-  FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk -fcolor-diagnostics
-  INCLUDES = -I/Users/ONLYPROGRAMMING/Desktop/Weather/Weather/build/Qt_6_8_0_for_macOS-Debug/Weather_autogen/include -isystem /Users/ONLYPROGRAMMING/folder/6.8.0/macos/lib/QtCore.framework/Headers -iframework /Users/ONLYPROGRAMMING/folder/6.8.0/macos/lib -isystem /Users/ONLYPROGRAMMING/folder/6.8.0/macos/mkspecs/macx-clang -isystem /Users/ONLYPROGRAMMING/folder/6.8.0/macos/include -isystem /Users/ONLYPROGRAMMING/folder/6.8.0/macos/lib/QtWidgets.framework/Headers -isystem /Users/ONLYPROGRAMMING/folder/6.8.0/macos/lib/QtGui.framework/Headers
-  OBJECT_DIR = CMakeFiles/Weather.dir
-  OBJECT_FILE_DIR = CMakeFiles/Weather.dir
-
 
 # =============================================================================
 # Link build statements for EXECUTABLE target Weather
@@ -129,7 +121,7 @@ build CMakeFiles/Weather.dir/HeaderLayout.cpp.o: CXX_COMPILER__Weather_unscanned
 #############################################
 # Link the executable Weather.app/Contents/MacOS/Weather
 
-build Weather.app/Contents/MacOS/Weather: CXX_EXECUTABLE_LINKER__Weather_Debug CMakeFiles/Weather.dir/Weather_autogen/mocs_compilation.cpp.o CMakeFiles/Weather.dir/main.cpp.o CMakeFiles/Weather.dir/mainwindow.cpp.o CMakeFiles/Weather.dir/HomePage.cpp.o CMakeFiles/Weather.dir/LeftLayout.cpp.o CMakeFiles/Weather.dir/RightLayout.cpp.o CMakeFiles/Weather.dir/CenterLayout.cpp.o CMakeFiles/Weather.dir/Layouts.cpp.o CMakeFiles/Weather.dir/HeaderLayout.cpp.o | /Users/ONLYPROGRAMMING/folder/6.8.0/macos/lib/QtWidgets.framework/Versions/A/QtWidgets /Users/ONLYPROGRAMMING/folder/6.8.0/macos/lib/QtGui.framework/Versions/A/QtGui /Users/ONLYPROGRAMMING/folder/6.8.0/macos/lib/QtCore.framework/Versions/A/QtCore || Weather_autogen Weather_autogen_timestamp_deps
+build Weather.app/Contents/MacOS/Weather: CXX_EXECUTABLE_LINKER__Weather_Debug CMakeFiles/Weather.dir/Weather_autogen/mocs_compilation.cpp.o CMakeFiles/Weather.dir/main.cpp.o CMakeFiles/Weather.dir/mainwindow.cpp.o CMakeFiles/Weather.dir/HomePage.cpp.o CMakeFiles/Weather.dir/LeftLayout.cpp.o CMakeFiles/Weather.dir/RightLayout.cpp.o CMakeFiles/Weather.dir/CenterLayout.cpp.o CMakeFiles/Weather.dir/Layouts.cpp.o | /Users/ONLYPROGRAMMING/folder/6.8.0/macos/lib/QtWidgets.framework/Versions/A/QtWidgets /Users/ONLYPROGRAMMING/folder/6.8.0/macos/lib/QtGui.framework/Versions/A/QtGui /Users/ONLYPROGRAMMING/folder/6.8.0/macos/lib/QtCore.framework/Versions/A/QtCore || Weather_autogen Weather_autogen_timestamp_deps
   FLAGS = -DQT_QML_DEBUG -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.5.sdk
   LINK_LIBRARIES = -Wl,-rpath,/Users/ONLYPROGRAMMING/folder/6.8.0/macos/lib  /Users/ONLYPROGRAMMING/folder/6.8.0/macos/lib/QtWidgets.framework/Versions/A/QtWidgets  /Users/ONLYPROGRAMMING/folder/6.8.0/macos/lib/QtGui.framework/Versions/A/QtGui  /Users/ONLYPROGRAMMING/folder/6.8.0/macos/lib/QtCore.framework/Versions/A/QtCore  -framework IOKit  -framework DiskArbitration  -Xlinker -framework -Xlinker OpenGL  -Xlinker -framework -Xlinker AGL  -framework AppKit  -framework ImageIO  -framework Metal
   LINK_PATH = -iframework /Users/ONLYPROGRAMMING/folder/6.8.0/macos/lib
@@ -231,7 +223,7 @@ build Weather_autogen/timestamp Weather_autogen/mocs_compilation.cpp | ${cmake_n
 #############################################
 # Phony custom command for CMakeFiles/Weather_autogen_timestamp_deps
 
-build CMakeFiles/Weather_autogen_timestamp_deps | ${cmake_ninja_workdir}CMakeFiles/Weather_autogen_timestamp_deps: phony /Users/ONLYPROGRAMMING/folder/6.8.0/macos/./libexec/uic /Users/ONLYPROGRAMMING/folder/6.8.0/macos/./libexec/moc /Users/ONLYPROGRAMMING/folder/6.8.0/macos/lib/QtCore.framework/Versions/A/QtCore /Users/ONLYPROGRAMMING/folder/6.8.0/macos/lib/QtWidgets.framework/Versions/A/QtWidgets
+build CMakeFiles/Weather_autogen_timestamp_deps | ${cmake_ninja_workdir}CMakeFiles/Weather_autogen_timestamp_deps: phony /Users/ONLYPROGRAMMING/folder/6.8.0/macos/./libexec/moc /Users/ONLYPROGRAMMING/folder/6.8.0/macos/./libexec/uic /Users/ONLYPROGRAMMING/folder/6.8.0/macos/lib/QtWidgets.framework/Versions/A/QtWidgets /Users/ONLYPROGRAMMING/folder/6.8.0/macos/lib/QtCore.framework/Versions/A/QtCore
 
 
 #############################################

@@ -12,7 +12,6 @@ void CenterLayout::createLayouts()
     m_center_label->setStyleSheet("background-color: yellow; color: blue");
     addWidget(m_center_label);
 
-
 }
 
 

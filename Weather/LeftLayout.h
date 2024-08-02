@@ -1,6 +1,7 @@
 #ifndef LEFTLAYOUT_H
 #define LEFTLAYOUT_H
 
+#include <cstddef>
 #include <QLabel>
 #include <QVBoxLayout>
 #include <QWidget>
@@ -10,9 +11,9 @@
 #include <QSet>
 #include <QMap>
 #include <QList>
+#include <QStringList>
 
 #include "Layouts.h"
-#include <cstddef>
 
 
 class LeftLayout : public QVBoxLayout , public Layouts
@@ -30,9 +31,10 @@ private:
     QPushButton* button{nullptr};
     QVBoxLayout* containerLayout{nullptr};
     QWidget* containerWidget{nullptr};
-    bool is_created = false;
     QSet<QPushButton*> clickedbuttons;
     QMap<QPushButton*, QList<QPushButton*>> addedButtons;
+    QStringList country_name;
+    QStringList country_city_name;
 };
 
 #endif // LEFTLAYOUT_H

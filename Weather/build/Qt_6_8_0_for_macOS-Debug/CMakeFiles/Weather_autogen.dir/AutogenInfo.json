@@ -297,12 +297,6 @@
 			null
 		],
 		[
-			"/Users/ONLYPROGRAMMING/Desktop/Weather/Weather/HeaderLayout.h",
-			"MU",
-			"EWIEGA46WW/moc_HeaderLayout.cpp",
-			null
-		],
-		[
 			"/Users/ONLYPROGRAMMING/Desktop/Weather/Weather/HomePage.h",
 			"MU",
 			"EWIEGA46WW/moc_HomePage.cpp",
@@ -392,11 +386,6 @@
 	[
 		[
 			"/Users/ONLYPROGRAMMING/Desktop/Weather/Weather/CenterLayout.cpp",
-			"MU",
-			null
-		],
-		[
-			"/Users/ONLYPROGRAMMING/Desktop/Weather/Weather/HeaderLayout.cpp",
 			"MU",
 			null
 		],

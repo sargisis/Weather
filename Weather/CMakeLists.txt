@@ -33,7 +33,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         RightLayout.h RightLayout.cpp
         CenterLayout.h CenterLayout.cpp
         Layouts.h Layouts.cpp
-        HeaderLayout.h HeaderLayout.cpp
+
     )
 else()
     if(ANDROID)
