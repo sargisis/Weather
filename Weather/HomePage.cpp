@@ -7,8 +7,10 @@ HomePage::HomePage(QWidget* parent)
 
     createLayout();
 
-    setWindowTitle("Weather");
+    setWindowTitle("Weather-App");
 
+    resize(750,750);
+    setMinimumSize(750,750);
 
     m_left_layout->createLayouts();
 
@@ -16,7 +18,7 @@ HomePage::HomePage(QWidget* parent)
 
     m_center_layout->createLayouts();
 
-
+    m_header_layout->createInputDialogInHeaderLayout();
 }
 
 void HomePage::createLayout()
@@ -25,20 +27,14 @@ void HomePage::createLayout()
 
     main_layout = new QGridLayout(m_central_widget);
 
-
-    m_header_layout = new QHBoxLayout();
-
-    m_header_label = new QLabel("Header Layout");
-
-    m_header_label->setStyleSheet("background-color: blue; color: white;");
-
-    m_header_layout->addWidget(m_header_label);
+    m_header_layout = new HeaderLayout();
 
     m_left_layout = new LeftLayout();
 
     m_right_layout = new RightLayout();
 
     m_center_layout = new CenterLayout();
+
 
 
 
@@ -59,37 +55,29 @@ void HomePage::createLayout()
     setLayout(main_layout);
 }
 
-
-
-void HomePage::resizeEvent(QResizeEvent* event)
+void HomePage::resizeEvent(QResizeEvent *event)
 {
     QWidget::resizeEvent(event);
 
-    QSize newSize = event->size();
-
-
-    m_header_label->setFixedHeight(newSize.height() * 0.2);
-
-
-    auto spacing = newSize.width() / 100; //
-    m_left_layout->setSpacing(spacing);
-    m_right_layout->setSpacing(spacing);
-    m_center_layout->setSpacing(spacing);
-
-
-    resizeWidgets(m_left_layout, newSize);
-    resizeWidgets(m_right_layout, newSize);
-    resizeWidgets(m_center_layout, newSize);
-
+    resizeWidgets();
 }
 
-void HomePage::resizeWidgets(QLayout *layout, const QSize &newSize)
+void HomePage::resizeWidgets()
 {
-    for (int i = 0; i < layout->count(); ++i) {
-        QWidget* widget = layout->itemAt(i)->widget();
-        if (widget) {
+    main_layout->setColumnStretch(0, percent(this->width(), 20));
+    main_layout->setColumnStretch(1, percent(this->width(), 60));
+    main_layout->setColumnStretch(2, percent(this->width(), 20));
 
-            widget->setFixedSize(newSize.width() / 3, newSize.height() / 5);
-        }
-    }
+    m_left_layout->setContentsMargins(10, 0, 10, 0);
+    m_right_layout->setContentsMargins(10, 0, 10, 0);
+    m_center_layout->setContentsMargins(5, 0, 5, 0);
 }
+
+double HomePage::percent(double x, double y)
+{
+    return x * y / 100;
+}
+
+
+
+

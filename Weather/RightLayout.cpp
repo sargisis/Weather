@@ -8,8 +8,8 @@ RightLayout::RightLayout(QWidget* parent)
 void RightLayout::createLayouts()
 {
     m_right_layout = new QVBoxLayout;
-    m_right_label = new QLabel("right label");
-    m_right_label->setStyleSheet("background-color: yellow; color: black;");
+    m_right_label = new QLabel("right label"); // Remove Soon
+    m_right_label->setStyleSheet("background-color: yellow; color: black;"); // Remove Soon
     addWidget(m_right_label);
 
 }
