@@ -1,19 +1,20 @@
-// #ifndef HEADERLAYOUT_H
-// #define HEADERLAYOUT_H
+#ifndef HEADERLAYOUT_H
+#define HEADERLAYOUT_H
 
-// #include <QHBoxLayout>
-// #include <QWidget>
-// #include <QLabel>
+#include <QInputDialog>
+#include <QLabel>
+#include <QHBoxLayout>
+#include <QWidget>
 
-// class HeaderLayout : QH
-// {
-// public:
-//    explicit HeaderLayout(QWidget* parent = nullptr);
-// public:
-//    void createHeaderLayout();
-// private:
-//    QHBoxLayout* m_header_layout {nullptr};
-//    QLabel* m_header_label {nullptr};
-// };
+class HeaderLayout : public QHBoxLayout
+{
+public:
+    HeaderLayout(QWidget* parent = nullptr);
 
-// #endif // HEADERLAYOUT_H
+    void createInputDialogInHeaderLayout();
+
+private:
+    QLabel* m_header_label;
+};
+
+#endif // HEADER_LAYOUT_H

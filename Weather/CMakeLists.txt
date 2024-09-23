@@ -12,8 +12,8 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Find Qt libraries
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets Network)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Network)
 
 # Set project sources
 set(PROJECT_SOURCES
@@ -21,6 +21,16 @@ set(PROJECT_SOURCES
     mainwindow.cpp
     mainwindow.h
     mainwindow.ui
+    HomePage.cpp
+    HomePage.h
+    LeftLayout.cpp
+    LeftLayout.h
+    RightLayout.cpp
+    RightLayout.h
+    CenterLayout.cpp
+    CenterLayout.h
+    Layouts.cpp
+    Layouts.h
 )
 
 # Configure target based on Qt version
@@ -28,34 +38,19 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(Weather
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
-        HomePage.h HomePage.cpp
-        LeftLayout.h LeftLayout.cpp
-        RightLayout.h RightLayout.cpp
-        CenterLayout.h CenterLayout.cpp
-        Layouts.h Layouts.cpp
         HeaderLayout.h HeaderLayout.cpp
     )
 else()
-    if(ANDROID)
-        add_library(Weather SHARED
-            ${PROJECT_SOURCES}
-        )
-    else()
-        add_executable(Weather
-            ${PROJECT_SOURCES}
-        )
-    endif()
+    add_executable(Weather
+        ${PROJECT_SOURCES}
+    )
 endif()
 
 # Link Qt libraries
-target_link_libraries(Weather PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(Weather PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Network)
 
 # Set target properties
-if(${QT_VERSION_MAJOR} VERSION_LESS 6.1.0)
-    set(BUNDLE_ID_OPTION MACOSX_BUNDLE_GUI_IDENTIFIER com.example.Weather)
-endif()
 set_target_properties(Weather PROPERTIES
-    ${BUNDLE_ID_OPTION}
     MACOSX_BUNDLE TRUE
     WIN32_EXECUTABLE TRUE
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}

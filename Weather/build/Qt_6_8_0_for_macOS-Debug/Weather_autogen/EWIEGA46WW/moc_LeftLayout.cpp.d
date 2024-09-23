@@ -92,7 +92,11 @@
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/sys/syslimits.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include/sys/wait.h \
   /Users/ONLYPROGRAMMING/Desktop/Weather/Weather/Layouts.h \
+  /Users/ONLYPROGRAMMING/folder/6.8.0/macos/lib/QtCore.framework/Versions/A/Headers/QList \
+  /Users/ONLYPROGRAMMING/folder/6.8.0/macos/lib/QtCore.framework/Versions/A/Headers/QMap \
+  /Users/ONLYPROGRAMMING/folder/6.8.0/macos/lib/QtCore.framework/Versions/A/Headers/QSet \
   /Users/ONLYPROGRAMMING/folder/6.8.0/macos/lib/QtCore.framework/Versions/A/Headers/QString \
+  /Users/ONLYPROGRAMMING/folder/6.8.0/macos/lib/QtCore.framework/Versions/A/Headers/QStringList \
   /Users/ONLYPROGRAMMING/folder/6.8.0/macos/lib/QtCore.framework/Versions/A/Headers/q20functional.h \
   /Users/ONLYPROGRAMMING/folder/6.8.0/macos/lib/QtCore.framework/Versions/A/Headers/q20memory.h \
   /Users/ONLYPROGRAMMING/folder/6.8.0/macos/lib/QtCore.framework/Versions/A/Headers/q20type_traits.h \

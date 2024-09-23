@@ -14,19 +14,36 @@ void LeftLayout::createLayouts()
 
 void LeftLayout::createButtonsLeftLayout()
 {
-     containerWidget = new QWidget;
-     containerLayout = new QVBoxLayout(containerWidget);
+    containerWidget = new QWidget;
+    containerLayout = new QVBoxLayout(containerWidget);
 
     containerLayout->setSpacing(5);
     containerLayout->setContentsMargins(5, 5, 5, 5);
 
-    for (size_t i{ }; i < 20; ++i)
+    country_name = {
+        "Argentina", "Armenia", "Australia", "Austria", "Bahamas", "Barbados", "Belize", "Bolivia", "Brazil", "Canada", "Chile",
+        "Colombia", "Costa Rica", "Cuba", "Dominican Republic", "Ecuador", "El Salvador", "France", "Georgia", "Germany",
+        "Greece", "Guatemala", "Honduras", "Hungary", "Iceland", "Ireland", "Italy", "Jamaica", "Mexico", "Netherlands",
+        "Nicaragua", "Norway", "Panama", "Paraguay", "Peru", "Poland", "Portugal", "Puerto Rico", "Romania", "Russia",
+        "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Spain", "Suriname", "Sweden",
+        "Switzerland", "Turkey", "United Kingdom", "United States", "Uruguay", "Vatican City", "Venezuela"
+    };
+
+
+    for (std::size_t i { }; i < country_name.size(); ++i)
     {
-        button = new QPushButton(QString("Button %1").arg(i + 1), containerWidget);
+        QPushButton *button = new QPushButton(country_name[i], containerWidget);
+        button->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
         containerLayout->addWidget(button);
-        QObject::connect(button , &QPushButton::clicked , this, &LeftLayout::addButtons);
+        QObject::connect(button, &QPushButton::clicked, this, &LeftLayout::addButtons);
+        QObject::connect(button , &QPushButton::clicked , this , &LeftLayout::selectCountry);
     }
-    addWidget(containerWidget);
+
+    scroll = new QScrollArea;
+    scroll->setWidget(containerWidget);
+    scroll->setWidgetResizable(true);
+
+    addWidget(scroll);
 }
 
 void LeftLayout::addButtons()
@@ -46,18 +63,11 @@ void LeftLayout::addButtons()
             addedButtons.remove(senderButton);
             clickedbuttons.remove(senderButton);
         }
-     else
-        {
-        QList<QPushButton*> newButtons;
-        for (std::size_t i = { 1 }; i <= 3; ++i)
-        {
-            QPushButton* newButton = new QPushButton(QString("New Button %1").arg(i));
-            int index = containerLayout->indexOf(senderButton) + 1;
-            containerLayout->insertWidget(index + (i - 1), newButton);
-            newButtons.append(newButton);
-        }
-            addedButtons.insert(senderButton, newButtons);
-            clickedbuttons.insert(senderButton);
-     }
-  }
+    }
 }
+
+void LeftLayout::selectCountry()
+{
+
+}
+

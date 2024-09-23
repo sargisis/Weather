@@ -111,6 +111,7 @@
   /Users/ONLYPROGRAMMING/folder/6.8.0/macos/lib/QtCore.framework/Versions/A/Headers/QPointF \
   /Users/ONLYPROGRAMMING/folder/6.8.0/macos/lib/QtCore.framework/Versions/A/Headers/QRect \
   /Users/ONLYPROGRAMMING/folder/6.8.0/macos/lib/QtCore.framework/Versions/A/Headers/QScopedPointer \
+  /Users/ONLYPROGRAMMING/folder/6.8.0/macos/lib/QtCore.framework/Versions/A/Headers/QSet \
   /Users/ONLYPROGRAMMING/folder/6.8.0/macos/lib/QtCore.framework/Versions/A/Headers/QSize \
   /Users/ONLYPROGRAMMING/folder/6.8.0/macos/lib/QtCore.framework/Versions/A/Headers/QSizeF \
   /Users/ONLYPROGRAMMING/folder/6.8.0/macos/lib/QtCore.framework/Versions/A/Headers/QString \
@@ -382,6 +383,7 @@
   /Users/ONLYPROGRAMMING/folder/6.8.0/macos/lib/QtGui.framework/Versions/A/Headers/QMatrix4x4 \
   /Users/ONLYPROGRAMMING/folder/6.8.0/macos/lib/QtGui.framework/Versions/A/Headers/QPaintDevice \
   /Users/ONLYPROGRAMMING/folder/6.8.0/macos/lib/QtGui.framework/Versions/A/Headers/QPaintDeviceWindow \
+  /Users/ONLYPROGRAMMING/folder/6.8.0/macos/lib/QtGui.framework/Versions/A/Headers/QResizeEvent \
   /Users/ONLYPROGRAMMING/folder/6.8.0/macos/lib/QtGui.framework/Versions/A/Headers/QShortcut \
   /Users/ONLYPROGRAMMING/folder/6.8.0/macos/lib/QtGui.framework/Versions/A/Headers/QSurfaceFormat \
   /Users/ONLYPROGRAMMING/folder/6.8.0/macos/lib/QtGui.framework/Versions/A/Headers/QTransform \
