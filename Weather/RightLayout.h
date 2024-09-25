@@ -1,5 +1,4 @@
-#ifndef RIGHTLAYOUT_H
-#define RIGHTLAYOUT_H
+#pragma once
 
 #include <QVBoxLayout>
 #include <QWidget>
@@ -19,4 +18,4 @@ private:
   QLabel* m_right_label {nullptr};
 };
 
-#endif // RIGHTLAYOUT_H
+

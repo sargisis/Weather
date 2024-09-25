@@ -66,10 +66,10 @@ include CMakeFiles/Weather_autogen_timestamp_deps.dir/compiler_depend.make
 # Include the progress variables for this target.
 include CMakeFiles/Weather_autogen_timestamp_deps.dir/progress.make
 
-CMakeFiles/Weather_autogen_timestamp_deps: /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/./libexec/moc
 CMakeFiles/Weather_autogen_timestamp_deps: /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtNetwork.framework/Versions/A/QtNetwork
-CMakeFiles/Weather_autogen_timestamp_deps: /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Versions/A/QtCore
 CMakeFiles/Weather_autogen_timestamp_deps: /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/./libexec/uic
+CMakeFiles/Weather_autogen_timestamp_deps: /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/./libexec/moc
+CMakeFiles/Weather_autogen_timestamp_deps: /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Versions/A/QtCore
 CMakeFiles/Weather_autogen_timestamp_deps: /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtWidgets.framework/Versions/A/QtWidgets
 
 Weather_autogen_timestamp_deps: CMakeFiles/Weather_autogen_timestamp_deps

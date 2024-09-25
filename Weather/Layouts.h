@@ -1,5 +1,4 @@
-#ifndef LAYOUTS_H
-#define LAYOUTS_H
+#pragma once
 
 class Layouts
 {
@@ -12,4 +11,4 @@ protected:
 
 };
 
-#endif // LAYOUTS_H
+

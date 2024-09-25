@@ -1,20 +1,21 @@
-#ifndef HEADERLAYOUT_H
-#define HEADERLAYOUT_H
+#pragma once
 
-#include <QInputDialog>
 #include <QLabel>
 #include <QHBoxLayout>
 #include <QWidget>
+#include <QLineEdit>
+#include <QPushButton>
 
 class HeaderLayout : public QHBoxLayout
 {
 public:
     HeaderLayout(QWidget* parent = nullptr);
 
-    void createInputDialogInHeaderLayout();
-
-private:
-    QLabel* m_header_label;
+public:
+    QPushButton* search_button {nullptr};
+    QLineEdit* m_search;
+public slots:
+     void updateSearchPlaceholder(const QString& country, bool isCityAllowed);
 };
 
-#endif // HEADER_LAYOUT_H
+

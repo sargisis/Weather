@@ -1,5 +1,4 @@
-#ifndef LEFTLAYOUT_H
-#define LEFTLAYOUT_H
+#pragma once
 
 #include <cstddef>
 #include <QLabel>
@@ -13,9 +12,10 @@
 #include <QList>
 #include <QStringList>
 #include <QScrollArea>
-#include <exception>
-#include <iostream>
+#include <QStringList>
+
 #include "Layouts.h"
+#include "HeaderLayout.h"
 
 
 class LeftLayout : public QVBoxLayout , public Layouts
@@ -23,13 +23,16 @@ class LeftLayout : public QVBoxLayout , public Layouts
       Q_OBJECT
 public:
    explicit LeftLayout(QWidget* parent = nullptr);
+
 public:
     virtual void createLayouts() override;
     void createButtonsLeftLayout();
+    bool canInputCityForCountry(const QString& country);
 
 private slots:
     void addButtons();
     void selectCountry();
+
 private:
     QVBoxLayout* m_left_layout {nullptr};
     QPushButton* button {nullptr};
@@ -42,6 +45,8 @@ private:
     QStringList country_city_name {nullptr};
 private:
     QScrollArea* scroll {nullptr};
+signals:
+     void countrySelected(const QString& country, bool isCityAllowed);
 };
 
-#endif // LEFTLAYOUT_H
+

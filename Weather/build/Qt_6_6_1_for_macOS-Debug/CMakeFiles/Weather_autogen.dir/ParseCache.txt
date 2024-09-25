@@ -364,6 +364,7 @@
  mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Versions/A/Headers/QObject
  mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Versions/A/Headers/QSharedDataPointer
  mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Versions/A/Headers/QString
+ mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Versions/A/Headers/QTimer
  mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Versions/A/Headers/QUrl
  mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Versions/A/Headers/QVariant
  mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Versions/A/Headers/q20functional.h
@@ -379,6 +380,7 @@
  mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Versions/A/Headers/qatomic.h
  mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Versions/A/Headers/qatomic_cxx11.h
  mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Versions/A/Headers/qbasicatomic.h
+ mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Versions/A/Headers/qbasictimer.h
  mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Versions/A/Headers/qbindingstorage.h
  mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Versions/A/Headers/qbytearray.h
  mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Versions/A/Headers/qbytearrayalgorithms.h
@@ -477,6 +479,7 @@
  mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Versions/A/Headers/qtdeprecationmarkers.h
  mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Versions/A/Headers/qtenvironmentvariables.h
  mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Versions/A/Headers/qtextstream.h
+ mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Versions/A/Headers/qtimer.h
  mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Versions/A/Headers/qtmetamacros.h
  mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Versions/A/Headers/qtnoop.h
  mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Versions/A/Headers/qtpreprocessorsupport.h
@@ -661,6 +664,7 @@
  mdp:/Library/Developer/CommandLineTools/SDKs/MacOSX15.0.sdk/usr/include/sys/stdio.h
  mdp:/Library/Developer/CommandLineTools/SDKs/MacOSX15.0.sdk/usr/include/sys/syslimits.h
  mdp:/Library/Developer/CommandLineTools/SDKs/MacOSX15.0.sdk/usr/include/sys/wait.h
+ mdp:/Users/ONLYPROGRAMMING/Desktop/Weather/Weather/HeaderLayout.h
  mdp:/Users/ONLYPROGRAMMING/Desktop/Weather/Weather/Layouts.h
  mdp:/Users/ONLYPROGRAMMING/Desktop/Weather/Weather/LeftLayout.h
  mdp:/Users/ONLYPROGRAMMING/Desktop/Weather/Weather/build/Qt_6_6_1_for_macOS-Debug/Weather_autogen/moc_predefs.h
@@ -797,6 +801,7 @@
  mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtGui.framework/Versions/A/Headers/qkeysequence.h
  mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtGui.framework/Versions/A/Headers/qpaintdevice.h
  mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtGui.framework/Versions/A/Headers/qpalette.h
+ mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtGui.framework/Versions/A/Headers/qpen.h
  mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtGui.framework/Versions/A/Headers/qpicture.h
  mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtGui.framework/Versions/A/Headers/qpixelformat.h
  mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtGui.framework/Versions/A/Headers/qpixmap.h
@@ -804,13 +809,18 @@
  mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtGui.framework/Versions/A/Headers/qregion.h
  mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtGui.framework/Versions/A/Headers/qrgb.h
  mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtGui.framework/Versions/A/Headers/qrgba64.h
+ mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtGui.framework/Versions/A/Headers/qtextcursor.h
  mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtGui.framework/Versions/A/Headers/qtextdocument.h
+ mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtGui.framework/Versions/A/Headers/qtextformat.h
+ mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtGui.framework/Versions/A/Headers/qtextoption.h
  mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtGui.framework/Versions/A/Headers/qtgui-config.h
  mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtGui.framework/Versions/A/Headers/qtguiexports.h
  mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtGui.framework/Versions/A/Headers/qtguiglobal.h
  mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtGui.framework/Versions/A/Headers/qtransform.h
  mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtGui.framework/Versions/A/Headers/qwindowdefs.h
+ mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtWidgets.framework/Versions/A/Headers/QHBoxLayout
  mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtWidgets.framework/Versions/A/Headers/QLabel
+ mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtWidgets.framework/Versions/A/Headers/QLineEdit
  mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtWidgets.framework/Versions/A/Headers/QPushButton
  mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtWidgets.framework/Versions/A/Headers/QScrollArea
  mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtWidgets.framework/Versions/A/Headers/QVBoxLayout
@@ -823,6 +833,7 @@
  mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qlabel.h
  mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qlayout.h
  mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qlayoutitem.h
+ mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qlineedit.h
  mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qpushbutton.h
  mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qscrollarea.h
  mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtWidgets.framework/Versions/A/Headers/qsizepolicy.h
@@ -967,6 +978,7 @@
  mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Versions/A/Headers/QSizeF
  mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Versions/A/Headers/QString
  mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Versions/A/Headers/QStringList
+ mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Versions/A/Headers/QTimer
  mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Versions/A/Headers/QUrl
  mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Versions/A/Headers/QVariant
  mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Versions/A/Headers/QtCore
@@ -1367,9 +1379,9 @@
  mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtNetwork.framework/Versions/A/Headers/qtnetworkglobal.h
  mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtWidgets.framework/Versions/A/Headers/QCommonStyle
  mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtWidgets.framework/Versions/A/Headers/QHBoxLayout
- mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtWidgets.framework/Versions/A/Headers/QInputDialog
  mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtWidgets.framework/Versions/A/Headers/QLabel
  mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtWidgets.framework/Versions/A/Headers/QLayout
+ mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtWidgets.framework/Versions/A/Headers/QLineEdit
  mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtWidgets.framework/Versions/A/Headers/QPushButton
  mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtWidgets.framework/Versions/A/Headers/QScrollArea
  mdp:/Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtWidgets.framework/Versions/A/Headers/QScrollerProperties

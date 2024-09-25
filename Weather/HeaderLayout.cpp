@@ -3,19 +3,26 @@
 HeaderLayout::HeaderLayout(QWidget* parent)
     : QHBoxLayout(parent)
 {
-    m_header_label = new QLabel("Header Layout", parent);
-    m_header_label->setStyleSheet("background-color: blue; color: white;");
-    addWidget(m_header_label);
+
+    search_button = new QPushButton(QString("Search"));
+    search_button->setStyleSheet("background-color: blue; color: white;");
+    addWidget(search_button);
+
+    m_search = new QLineEdit(parent);
+    m_search->setPlaceholderText("Search your city");
+    m_search->setStyleSheet("padding: 5px; font-size: 16px;");
+    addWidget(m_search);
 }
 
 
-void HeaderLayout::createInputDialogInHeaderLayout()
+void HeaderLayout::updateSearchPlaceholder(const QString &country, bool isCityAllowed)
 {
-    bool ok;
-    QString text = QInputDialog::getText(nullptr, QObject::tr("Input Dialog"),
-                                         QObject::tr("Enter some text:"), QLineEdit::Normal,
-                                         "", &ok);
-    if (ok && !text.isEmpty()) {
-        m_header_label->setText(text);
+    if (isCityAllowed) {
+    m_search->setPlaceholderText("Search city in " + country);
+    m_search->setEnabled(true);
+    } else {
+        m_search->setPlaceholderText("Нельзя вводить города для " + country);
+        m_search->clear();
+        m_search->setEnabled(false);
     }
 }

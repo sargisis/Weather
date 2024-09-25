@@ -3,7 +3,6 @@
 LeftLayout::LeftLayout(QWidget* parent)
     : QVBoxLayout(parent)
 {
-
     createButtonsLeftLayout();
 }
 
@@ -18,7 +17,7 @@ void LeftLayout::createButtonsLeftLayout()
     containerLayout = new QVBoxLayout(containerWidget);
 
     containerLayout->setSpacing(5);
-    containerLayout->setContentsMargins(5, 5, 5, 5);
+    containerLayout->setContentsMargins(10,10,10,10);
 
     country_name = {
         "Argentina", "Armenia", "Australia", "Austria", "Bahamas", "Barbados", "Belize", "Bolivia", "Brazil", "Canada", "Chile",
@@ -29,19 +28,23 @@ void LeftLayout::createButtonsLeftLayout()
         "Switzerland", "Turkey", "United Kingdom", "United States", "Uruguay", "Vatican City", "Venezuela"
     };
 
-
     for (std::size_t i { }; i < country_name.size(); ++i)
     {
-        QPushButton *button = new QPushButton(country_name[i], containerWidget);
+        QPushButton* button = new QPushButton(country_name[i], containerWidget);
+
         button->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
+
         containerLayout->addWidget(button);
+
         QObject::connect(button, &QPushButton::clicked, this, &LeftLayout::addButtons);
-        QObject::connect(button , &QPushButton::clicked , this , &LeftLayout::selectCountry);
+        QObject::connect(button, &QPushButton::clicked, this, &LeftLayout::selectCountry);
     }
 
     scroll = new QScrollArea;
     scroll->setWidget(containerWidget);
     scroll->setWidgetResizable(true);
+
+    scroll->setFixedHeight(600);
 
     addWidget(scroll);
 }
@@ -68,6 +71,24 @@ void LeftLayout::addButtons()
 
 void LeftLayout::selectCountry()
 {
+    QPushButton* senderButton = qobject_cast<QPushButton*>(sender());
+    if (senderButton)
+    {
+        QString selectedCountry = senderButton->text();
+        bool canInputCity = canInputCityForCountry(selectedCountry);
 
+        emit countrySelected(selectedCountry , canInputCity);
+    }
 }
 
+bool LeftLayout::canInputCityForCountry(const QString& country)
+{
+    QStringList allowedCountries = {"Argentina", "Armenia", "Australia", "Austria", "Bahamas", "Barbados", "Belize", "Bolivia", "Brazil", "Canada", "Chile",
+        "Colombia", "Costa Rica", "Cuba", "Dominican Republic", "Ecuador", "El Salvador", "France", "Georgia", "Germany",
+        "Greece", "Guatemala", "Honduras", "Hungary", "Iceland", "Ireland", "Italy", "Jamaica", "Mexico", "Netherlands",
+        "Nicaragua", "Norway", "Panama", "Paraguay", "Peru", "Poland", "Portugal", "Puerto Rico", "Romania", "Russia",
+        "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Spain", "Suriname", "Sweden",
+                                    "Switzerland", "Turkey", "United Kingdom", "United States", "Uruguay", "Vatican City", "Venezuela"};
+     return allowedCountries.contains(country);
+
+}

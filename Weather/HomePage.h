@@ -1,5 +1,4 @@
-#ifndef HOMEPAGE_H
-#define HOMEPAGE_H
+#pragma once
 
 #include "LeftLayout.h"
 #include "RightLayout.h"
@@ -10,7 +9,6 @@
 #include <QLabel>
 #include <QSize>
 #include <QResizeEvent>
-#include <QInputDialog>
 
 class HomePage : public QWidget
 {
@@ -41,4 +39,4 @@ private:
 
 };
 
-#endif // HOMEPAGE_H
+

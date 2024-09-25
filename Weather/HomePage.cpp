@@ -18,7 +18,19 @@ HomePage::HomePage(QWidget* parent)
 
     m_center_layout->createLayouts();
 
-    m_header_layout->createInputDialogInHeaderLayout();
+    connect(m_left_layout, &LeftLayout::countrySelected, this, [this](const QString& country, bool isCityAllowed) {
+        m_header_layout->updateSearchPlaceholder(country, isCityAllowed);
+        m_header_layout->m_search->setEnabled(isCityAllowed);
+    });
+
+    connect(m_header_layout->search_button, &QPushButton::clicked, this, [this]() {
+        QString city = m_header_layout->m_search->text();
+        if (!city.isEmpty()) {
+            m_center_layout->fetchWeatherDataForCity(city);
+        } else {
+            qDebug() << "Поле поиска пустое";
+        }
+    });
 }
 
 void HomePage::createLayout()
@@ -34,8 +46,6 @@ void HomePage::createLayout()
     m_right_layout = new RightLayout();
 
     m_center_layout = new CenterLayout();
-
-
 
 
     main_layout->addLayout(m_header_layout, 0, 0, 1, 3);
