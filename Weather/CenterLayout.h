@@ -9,7 +9,6 @@
 #include <QJsonObject>
 #include <QUrl>
 #include <QJsonArray>
-#include <QTimer>
 
 #include "Layouts.h"
 
@@ -27,11 +26,8 @@ private:
     QVBoxLayout* m_center_layout;
     QLabel* m_center_label;
     QNetworkAccessManager* m_networkManager;
-    QTimer* m_timer;
-private:
-    void fetchWeatherData(const QString& latitude, const QString& longitude);
+
 public:
+    void fetchWeatherData(const QString& latitude, const QString& longitude);
     void fetchWeatherDataForCity(const QString& city);
 };
-
-

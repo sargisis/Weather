@@ -109,6 +109,7 @@
   /Users/ONLYPROGRAMMING/Desktop/Weather/Weather/Layouts.h \
   /Users/ONLYPROGRAMMING/Desktop/Weather/Weather/LeftLayout.h \
   /Users/ONLYPROGRAMMING/Desktop/Weather/Weather/RightLayout.h \
+  /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Versions/A/Headers/QDateTime \
   /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Versions/A/Headers/QDeadlineTimer \
   /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Versions/A/Headers/QEvent \
   /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Versions/A/Headers/QFlags \
@@ -132,7 +133,6 @@
   /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Versions/A/Headers/QSizeF \
   /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Versions/A/Headers/QString \
   /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Versions/A/Headers/QStringList \
-  /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Versions/A/Headers/QTimer \
   /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Versions/A/Headers/QUrl \
   /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Versions/A/Headers/QVariant \
   /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Versions/A/Headers/QtCore \
@@ -536,6 +536,7 @@
   /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtWidgets.framework/Versions/A/Headers/QLabel \
   /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtWidgets.framework/Versions/A/Headers/QLayout \
   /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtWidgets.framework/Versions/A/Headers/QLineEdit \
+  /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtWidgets.framework/Versions/A/Headers/QMessageBox \
   /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtWidgets.framework/Versions/A/Headers/QPushButton \
   /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtWidgets.framework/Versions/A/Headers/QScrollArea \
   /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtWidgets.framework/Versions/A/Headers/QScrollerProperties \

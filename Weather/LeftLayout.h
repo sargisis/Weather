@@ -6,25 +6,20 @@
 #include <QWidget>
 #include <QPushButton>
 #include <QString>
-#include <QString>
 #include <QSet>
 #include <QMap>
 #include <QList>
 #include <QStringList>
 #include <QScrollArea>
-#include <QStringList>
 
 #include "Layouts.h"
 #include "HeaderLayout.h"
 
-
-class LeftLayout : public QVBoxLayout , public Layouts
+class LeftLayout : public QVBoxLayout, public Layouts
 {
-      Q_OBJECT
+    Q_OBJECT
 public:
-   explicit LeftLayout(QWidget* parent = nullptr);
-
-public:
+    explicit LeftLayout(QWidget* parent = nullptr);
     virtual void createLayouts() override;
     void createButtonsLeftLayout();
     bool canInputCityForCountry(const QString& country);
@@ -38,15 +33,12 @@ private:
     QPushButton* button {nullptr};
     QVBoxLayout* containerLayout {nullptr};
     QWidget* containerWidget {nullptr};
-private:
     QSet<QPushButton*> clickedbuttons {nullptr};
     QMap<QPushButton*, QList<QPushButton*>> addedButtons;
     QStringList country_name {nullptr};
     QStringList country_city_name {nullptr};
-private:
     QScrollArea* scroll {nullptr};
+
 signals:
-     void countrySelected(const QString& country, bool isCityAllowed);
+    void countrySelected(const QString& country, bool isCityAllowed);
 };
-
-

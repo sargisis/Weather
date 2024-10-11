@@ -3,12 +3,9 @@
 class Layouts
 {
 public:
-     Layouts() = default;
+    Layouts() = default;
 protected:
-     virtual void createLayouts() = 0;
+    virtual void createLayouts() = 0;
 protected:
-     virtual ~Layouts() {}
-
+    virtual ~Layouts() {}
 };
-
-

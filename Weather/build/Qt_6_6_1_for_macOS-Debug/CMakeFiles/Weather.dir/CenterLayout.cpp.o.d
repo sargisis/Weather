@@ -607,7 +607,4 @@ CMakeFiles/Weather.dir/CenterLayout.cpp.o: \
   /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Headers/qjsonobject.h \
   /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Headers/QJsonArray \
   /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Headers/qjsonarray.h \
-  /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Headers/QTimer \
-  /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Headers/qtimer.h \
-  /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Headers/qbasictimer.h \
   /Users/ONLYPROGRAMMING/Desktop/Weather/Weather/Layouts.h

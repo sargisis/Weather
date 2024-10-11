@@ -562,4 +562,50 @@ CMakeFiles/Weather.dir/RightLayout.cpp.o: \
   /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Headers/qiodevice.h \
   /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtGui.framework/Headers/qtextdocument.h \
   /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Headers/qurl.h \
+  /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtNetwork.framework/Headers/QNetworkAccessManager \
+  /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtNetwork.framework/Headers/qnetworkaccessmanager.h \
+  /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtNetwork.framework/Headers/qtnetworkglobal.h \
+  /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtNetwork.framework/Headers/qtnetwork-config.h \
+  /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtNetwork.framework/Headers/qtnetworkexports.h \
+  /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtNetwork.framework/Headers/qnetworkrequest.h \
+  /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Headers/QSharedDataPointer \
+  /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Headers/QString \
+  /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Headers/QUrl \
+  /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Headers/QVariant \
+  /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Headers/QList \
+  /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Headers/QObject \
+  /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtNetwork.framework/Headers/QSslConfiguration \
+  /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtNetwork.framework/Headers/qsslconfiguration.h \
+  /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtNetwork.framework/Headers/qsslsocket.h \
+  /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtNetwork.framework/Headers/qtcpsocket.h \
+  /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtNetwork.framework/Headers/qabstractsocket.h \
+  /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtNetwork.framework/Headers/qhostaddress.h \
+  /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtNetwork.framework/Headers/qsslerror.h \
+  /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtNetwork.framework/Headers/qsslcertificate.h \
+  /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Headers/qcryptographichash.h \
+  /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Headers/qdatetime.h \
+  /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Headers/qcalendar.h \
+  /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Headers/qlocale.h \
+  /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtNetwork.framework/Headers/qssl.h \
+  /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Headers/QFlags \
+  /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtNetwork.framework/Headers/QSslPreSharedKeyAuthenticator \
+  /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtNetwork.framework/Headers/qsslpresharedkeyauthenticator.h \
+  /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Headers/QMetaType \
+  /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtNetwork.framework/Headers/QNetworkReply \
+  /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtNetwork.framework/Headers/qnetworkreply.h \
+  /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Headers/QIODevice \
+  /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtNetwork.framework/Headers/QNetworkRequest \
+  /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Headers/QDateTime \
+  /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Headers/QJsonDocument \
+  /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Headers/qjsondocument.h \
+  /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Headers/qjsonvalue.h \
+  /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Headers/qcborvalue.h \
+  /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Headers/qcborcommon.h \
+  /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Headers/qregularexpression.h \
+  /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Headers/quuid.h \
+  /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Headers/qendian.h \
+  /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Headers/QJsonObject \
+  /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Headers/qjsonobject.h \
+  /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Headers/QJsonArray \
+  /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Headers/qjsonarray.h \
   /Users/ONLYPROGRAMMING/Desktop/Weather/Weather/Layouts.h

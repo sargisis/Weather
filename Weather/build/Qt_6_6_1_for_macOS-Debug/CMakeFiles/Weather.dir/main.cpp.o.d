@@ -587,7 +587,9 @@ CMakeFiles/Weather.dir/main.cpp.o: \
   /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtGui.framework/Headers/qtextformat.h \
   /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtGui.framework/Headers/qpen.h \
   /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtGui.framework/Headers/qtextoption.h \
-  /Users/ONLYPROGRAMMING/Desktop/Weather/Weather/RightLayout.h \
+  /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtWidgets.framework/Headers/QMessageBox \
+  /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtWidgets.framework/Headers/qmessagebox.h \
+  /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtWidgets.framework/Headers/qdialog.h \
   /Users/ONLYPROGRAMMING/Desktop/Weather/Weather/CenterLayout.h \
   /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtNetwork.framework/Headers/QNetworkAccessManager \
   /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtNetwork.framework/Headers/qnetworkaccessmanager.h \
@@ -632,9 +634,8 @@ CMakeFiles/Weather.dir/main.cpp.o: \
   /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Headers/qjsonobject.h \
   /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Headers/QJsonArray \
   /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Headers/qjsonarray.h \
-  /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Headers/QTimer \
-  /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Headers/qtimer.h \
-  /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Headers/qbasictimer.h \
+  /Users/ONLYPROGRAMMING/Desktop/Weather/Weather/RightLayout.h \
+  /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Headers/QDateTime \
   /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtWidgets.framework/Headers/QtWidgets \
   /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtWidgets.framework/Headers/QtWidgetsDepends \
   /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Headers/QtCore \
@@ -662,6 +663,7 @@ CMakeFiles/Weather.dir/main.cpp.o: \
   /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Headers/qnativeinterface.h \
   /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Headers/qcoreapplication_platform.h \
   /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Headers/qassociativeiterable.h \
+  /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Headers/qbasictimer.h \
   /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Headers/qbitarray.h \
   /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Headers/qbuffer.h \
   /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Headers/qbytearraymatcher.h \
@@ -814,6 +816,7 @@ CMakeFiles/Weather.dir/main.cpp.o: \
   /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Headers/qtextboundaryfinder.h \
   /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Headers/qthreadstorage.h \
   /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Headers/qtimeline.h \
+  /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Headers/qtimer.h \
   /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Headers/qtranslator.h \
   /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Headers/qtransposeproxymodel.h \
   /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtCore.framework/Headers/qurlquery.h \
@@ -949,7 +952,6 @@ CMakeFiles/Weather.dir/main.cpp.o: \
   /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtWidgets.framework/Headers/qcalendarwidget.h \
   /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtWidgets.framework/Headers/qcheckbox.h \
   /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtWidgets.framework/Headers/qcolordialog.h \
-  /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtWidgets.framework/Headers/qdialog.h \
   /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtWidgets.framework/Headers/qcolormap.h \
   /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtWidgets.framework/Headers/qcolumnview.h \
   /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtWidgets.framework/Headers/qcombobox.h \
@@ -1003,7 +1005,6 @@ CMakeFiles/Weather.dir/main.cpp.o: \
   /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtWidgets.framework/Headers/qmdisubwindow.h \
   /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtWidgets.framework/Headers/qmenu.h \
   /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtWidgets.framework/Headers/qmenubar.h \
-  /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtWidgets.framework/Headers/qmessagebox.h \
   /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtWidgets.framework/Headers/qplaintextedit.h \
   /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtWidgets.framework/Headers/qtextedit.h \
   /Users/ONLYPROGRAMMING/Qt/6.6.1/macos/lib/QtWidgets.framework/Headers/qprogressbar.h \

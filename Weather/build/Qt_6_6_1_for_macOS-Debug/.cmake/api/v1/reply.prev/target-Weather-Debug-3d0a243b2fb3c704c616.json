@@ -249,7 +249,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "-DQT_QML_DEBUG -g -std=gnu++17 -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.0.sdk -fcolor-diagnostics"
+					"fragment" : "-DQT_QML_DEBUG -g -std=gnu++2b -arch arm64 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX15.0.sdk -fcolor-diagnostics"
 				}
 			],
 			"defines" : 
@@ -339,7 +339,7 @@
 					30,
 					30
 				],
-				"standard" : "17"
+				"standard" : "23"
 			},
 			"sourceIndexes" : 
 			[
@@ -358,11 +358,11 @@
 	"dependencies" : 
 	[
 		{
-			"backtrace" : 0,
-			"id" : "Weather_autogen::@6890427a1f51a3e7e1df"
+			"id" : "Weather_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
 		},
 		{
-			"id" : "Weather_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
+			"backtrace" : 0,
+			"id" : "Weather_autogen::@6890427a1f51a3e7e1df"
 		}
 	],
 	"id" : "Weather::@6890427a1f51a3e7e1df",
