@@ -73,6 +73,7 @@ void LeftLayout::createButtonsLeftLayout()
     for (std::size_t i {}; i < country_name.size(); ++i)
     {
         QPushButton* button = new QPushButton(country_name[i], containerWidget); // Create a new button for the country
+        button->setMinimumWidth(100);
         button->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed); // Set size policy for the button
         containerLayout->addWidget(button); // Add the button to the container layout
 
