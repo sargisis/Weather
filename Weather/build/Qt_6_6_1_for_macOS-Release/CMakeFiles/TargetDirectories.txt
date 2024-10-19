@@ -1,9 +1,0 @@
-/Users/ONLYPROGRAMMING/Desktop/Weather/Weather/build/Qt_6_6_1_for_macOS-Release/CMakeFiles/Weather.dir
-/Users/ONLYPROGRAMMING/Desktop/Weather/Weather/build/Qt_6_6_1_for_macOS-Release/CMakeFiles/edit_cache.dir
-/Users/ONLYPROGRAMMING/Desktop/Weather/Weather/build/Qt_6_6_1_for_macOS-Release/CMakeFiles/rebuild_cache.dir
-/Users/ONLYPROGRAMMING/Desktop/Weather/Weather/build/Qt_6_6_1_for_macOS-Release/CMakeFiles/list_install_components.dir
-/Users/ONLYPROGRAMMING/Desktop/Weather/Weather/build/Qt_6_6_1_for_macOS-Release/CMakeFiles/install.dir
-/Users/ONLYPROGRAMMING/Desktop/Weather/Weather/build/Qt_6_6_1_for_macOS-Release/CMakeFiles/install/local.dir
-/Users/ONLYPROGRAMMING/Desktop/Weather/Weather/build/Qt_6_6_1_for_macOS-Release/CMakeFiles/install/strip.dir
-/Users/ONLYPROGRAMMING/Desktop/Weather/Weather/build/Qt_6_6_1_for_macOS-Release/CMakeFiles/Weather_autogen_timestamp_deps.dir
-/Users/ONLYPROGRAMMING/Desktop/Weather/Weather/build/Qt_6_6_1_for_macOS-Release/CMakeFiles/Weather_autogen.dir
