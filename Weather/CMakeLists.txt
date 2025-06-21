@@ -44,6 +44,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         Auth.h Auth.cpp
         Register.h Register.cpp
         ForgotPassowrd.h ForgotPassowrd.cpp
+        sss.h sss.cpp
     )
 else()
     add_executable(Weather
