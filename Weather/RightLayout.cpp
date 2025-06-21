@@ -1,77 +1,113 @@
 #include "RightLayout.h"
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
+#include <QDateTime>
+#include <QNetworkRequest>
 
 RightLayout::RightLayout(QWidget* parent)
-    : QVBoxLayout(parent)
-    , m_network_manager{new QNetworkAccessManager(this)} // Initialize the network manager for handling API requests
+    : QVBoxLayout(parent), networkManager(std::make_unique<QNetworkAccessManager>(parent))
 {
-    // Initialize the label to display future weather info
-    m_right_label = new QLabel("Future Weather info");
-    m_right_label->setStyleSheet("background-color: blue; color: white"); // Set the label's style
-
-    // Connect the finished signal of the network manager to the handleNetworkInfo slot
-    QObject::connect(m_network_manager, &QNetworkAccessManager::finished, this, &RightLayout::handleNetworkInfo);
-
-    // Initialize your API key here
-    m_apiKey = "716aa27058963431d3f2aafaeff2e033"; // Replace with your actual API key
+    createLayouts();
+    connect(networkManager.get(), &QNetworkAccessManager::finished, this, &RightLayout::onForecastData);
 }
 
 void RightLayout::createLayouts()
 {
-    // Add the label to the layout
-    addWidget(m_right_label);
+    setSpacing(15);
+    setContentsMargins(10, 10, 10, 10);
+    setAlignment(Qt::AlignTop);
 }
 
 void RightLayout::fetchFutureWeather(const QString& city)
 {
-    // Construct the API request URL using the city and API key for future weather
-    QString forecastUrl = QString("http://api.openweathermap.org/data/2.5/forecast?q=%1&appid=%2&units=metric")
-                              .arg(city) // Substitute the city name into the URL
-                              .arg(m_apiKey); // Substitute the API key into the URL
-    QUrl url(forecastUrl); // Create a QUrl object with the constructed URL
-
-    // Make a GET request to fetch the future weather information
-    m_network_manager->get(QNetworkRequest(url));
+    clearCards();
+    QString apiKey = "716aa27058963431d3f2aafaeff2e033";
+    QString url = QString("https://api.openweathermap.org/data/2.5/forecast?q=%1&appid=%2&units=metric")
+                      .arg(city, apiKey);
+    networkManager->get(QNetworkRequest(QUrl(url)));
 }
 
-void RightLayout::handleNetworkInfo(QNetworkReply* reply)
+void RightLayout::onForecastData(QNetworkReply* reply)
 {
-    // Check if there was a network error
     if (reply->error() != QNetworkReply::NoError) {
-        m_right_label->setText("Error fetching weather data."); // Display error message
-        reply->deleteLater(); // Cleanup the reply object
-        return; // Exit the function if there was an error
+        auto* error = createForecastCard("Error", 0, "Failed to load forecast");
+        this->addWidget(error);
+        forecastCards.push_back(error);
+        reply->deleteLater();
+        return;
     }
 
-    // Read the response data from the reply
-    QByteArray response = reply->readAll();
+    auto json = QJsonDocument::fromJson(reply->readAll()).object();
+    auto list = json["list"].toArray();
 
-    // Parse the response as JSON
-    QJsonDocument jsonDoc = QJsonDocument::fromJson(response);
-    QJsonObject jsonObject = jsonDoc.object(); // Convert the JSON document to a JSON object
+    QSet<QString> uniqueDays;
+    for (const auto& item : list) {
+        auto entry = item.toObject();
+        QString dt_txt = entry["dt_txt"].toString();
+        QDateTime dateTime = QDateTime::fromString(dt_txt, "yyyy-MM-dd HH:mm:ss");
 
-    // Extract the list of forecasts from the JSON object
-    QJsonArray forecastArray = jsonObject["list"].toArray();
+        // Show only 12:00 forecasts for uniqueness
+        if (dateTime.time().hour() != 12)
+            continue;
 
-    QString forecastText; // Variable to hold formatted forecast text
+        QString dayKey = dateTime.date().toString("yyyy-MM-dd");
+        if (uniqueDays.contains(dayKey))
+            continue;
 
-    // Extract and format the first 5 future weather forecasts
-    for (int i = 0; i < 5 && i < forecastArray.size(); ++i) {
-        QJsonObject forecastObject = forecastArray[i].toObject(); // Get the forecast object
-        QJsonObject mainObject = forecastObject["main"].toObject(); // Get the main weather data
-        double temperature = mainObject["temp"].toDouble(); // Extract the temperature
+        uniqueDays.insert(dayKey);
 
-        QJsonArray weatherArray = forecastObject["weather"].toArray(); // Get the weather array
-        QString description = weatherArray[0].toObject()["description"].toString(); // Extract the weather description
+        double temp = entry["main"].toObject()["temp"].toDouble();
+        QString desc = entry["weather"].toArray()[0].toObject()["description"].toString();
+        QString timeStr = dateTime.toString("ddd dd MMM");
 
-        QString dateTime = forecastObject["dt_txt"].toString(); // Get the forecast date and time
+        auto* card = createForecastCard(timeStr, temp, desc);
+        this->addWidget(card);
+        forecastCards.push_back(card);
 
-        // Format and append the weather data for display
-        forecastText.append(QString("%1: %2°C, %3\n").arg(dateTime).arg(temperature).arg(description));
+        if (forecastCards.size() >= 5)
+            break;
     }
 
-    // Update the label with the formatted weather forecast text
-    m_right_label->setText(forecastText);
-
-    // Cleanup the reply object
     reply->deleteLater();
+}
+
+QFrame* RightLayout::createForecastCard(const QString& time, double temp, const QString& desc)
+{
+    auto* card = new QFrame;
+    auto* layout = new QVBoxLayout(card);
+
+    auto* label = new QLabel(
+        QString("🗓️ <b>%1</b><br>🌡️ %2 °C<br>☁️ %3")
+            .arg(time)
+            .arg(temp)
+            .arg(desc)
+        );
+    label->setWordWrap(true);
+    label->setAlignment(Qt::AlignLeft);
+
+    card->setStyleSheet(R"(
+        QFrame {
+            background-color: #0a84ff;
+            color: white;
+            padding: 14px;
+            border-radius: 14px;
+            font-size: 14px;
+        }
+        QLabel {
+            font-size: 14px;
+        }
+    )");
+
+    layout->addWidget(label);
+    return card;
+}
+
+void RightLayout::clearCards()
+{
+    for (auto* card : forecastCards) {
+        this->removeWidget(card);
+        delete card;
+    }
+    forecastCards.clear();
 }

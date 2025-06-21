@@ -1,70 +1,94 @@
 #include "CenterLayout.h"
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
+#include <QDateTime>
+#include <QFrame>
+#include <QNetworkRequest>
 
 CenterLayout::CenterLayout(QWidget* parent)
-    : QVBoxLayout{parent}, // Initialize the vertical layout with the specified parent
-    m_networkManager{new QNetworkAccessManager(this)} // Create a network access manager for handling API requests
+    : QVBoxLayout(parent), networkManager(std::make_unique<QNetworkAccessManager>(parent))
 {
-    m_center_layout = new QVBoxLayout; // Create a new vertical layout for the center area
-    m_center_label = new QLabel("Weather Info"); // Create a label to display weather information
-
-    m_center_label->setFixedSize(300, 600);
-
-    m_center_label->setStyleSheet("background-color: yellow; color: blue"); // Set label's background and text color
-    m_center_layout->addWidget(m_center_label); // Add the label to the center layout
-
-    // Connect the finished signal of the network manager to the slot for handling received weather data
-    connect(m_networkManager, &QNetworkAccessManager::finished, this, &CenterLayout::onWeatherDataReceived);
+    createLayouts();
+    connect(networkManager.get(), &QNetworkAccessManager::finished, this, &CenterLayout::onWeatherDataReceived);
 }
 
 void CenterLayout::createLayouts()
 {
-    addLayout(m_center_layout); // Add the center layout to the main layout
-}
+    auto* card = new QFrame;
+    card->setObjectName("centerCard");
 
-void CenterLayout::fetchWeatherData(const QString& latitude, const QString& longitude)
-{
-    QString apiKey = "716aa27058963431d3f2aafaeff2e033"; // Your OpenWeatherMap API key
-    QString urlStr = QString("https://api.openweathermap.org/data/2.5/weather?lat=%1&lon=%2&appid=%3&units=metric&nocache=%4")
-                         .arg(latitude) // Insert latitude into the URL
-                         .arg(longitude) // Insert longitude into the URL
-                         .arg(apiKey) // Insert API key into the URL
-                         .arg(QDateTime::currentSecsSinceEpoch()); // Add a cache-busting parameter
-    QUrl url(urlStr); // Create a URL object from the constructed URL string
-    m_networkManager->get(QNetworkRequest(url)); // Send a GET request to the API
-}
+    auto* layout = new QVBoxLayout(card);
+    layout->setContentsMargins(20, 20, 20, 20);
+    layout->setSpacing(10);
 
-void CenterLayout::onWeatherDataReceived(QNetworkReply* reply)
-{
-    // Check for network errors in the reply
-    if (reply->error() == QNetworkReply::NoError) {
-        QByteArray responseData = reply->readAll(); // Read the response data
-        QJsonDocument jsonDoc = QJsonDocument::fromJson(responseData); // Parse the JSON response
-        QJsonObject jsonObj = jsonDoc.object(); // Convert the document to a JSON object
+    card->setStyleSheet(R"(
+        #centerCard {
+            background-color: #1e1e1e;
+            border-radius: 20px;
+        }
+        QLabel {
+            color: #ffffff;
+            font-size: 16px;
+            padding: 5px;
+        }
+    )");
 
-        // Extract temperature and weather description from the JSON object
-        double temperature = jsonObj.value(QString("main")).toObject().value(QString("temp")).toDouble();
-        QString weatherDescription = jsonObj.value(QString("weather")).toArray()[0].toObject().value(QString("description")).toString();
-        QString currentTime = QDateTime::currentDateTime().toString("hh:mm:ss"); // Get the current time
+    QStringList labels = {
+        "🌡️ Temperature: —",
+        "☁️ Description: —",
+        "📊 Pressure: —",
+        "💧 Humidity: —",
+        "🌬️ Wind Speed: —",
+        "🕒 Updated at: —"
+    };
 
-        // Update the label with the fetched weather data
-        m_center_label->setText(QString("Temperature: %1 °C\n%2\nUpdated at: %3")
-                                    .arg(temperature)
-                                    .arg(weatherDescription)
-                                    .arg(currentTime));
-    } else {
-        // Display an error message if there was an issue retrieving the weather data
-        m_center_label->setText("Error retrieving weather data: " + reply->errorString());
+    for (const auto& text : labels) {
+        auto* lbl = new QLabel(text);
+        lbl->setWordWrap(true);
+        layout->addWidget(lbl);
+        weatherLabels.push_back(lbl);
     }
-    reply->deleteLater(); // Cleanup the reply object
+
+    this->addWidget(card);
 }
 
 void CenterLayout::fetchWeatherDataForCity(const QString& city)
 {
-    QString apiKey = "716aa27058963431d3f2aafaeff2e033"; // Your OpenWeatherMap API key
-    QString urlStr = QString("https://api.openweathermap.org/data/2.5/weather?q=%1&appid=%2&units=metric&nocache=%3")
-                         .arg(city) // Insert city name into the URL
-                         .arg(apiKey) // Insert API key into the URL
-                         .arg(QDateTime::currentSecsSinceEpoch()); // Add a cache-busting parameter
-    QUrl url(urlStr); // Create a URL object from the constructed URL string
-    m_networkManager->get(QNetworkRequest(url)); // Send a GET request to the API
+    QString apiKey = "716aa27058963431d3f2aafaeff2e033";
+    QString url = QString("https://api.openweathermap.org/data/2.5/weather?q=%1&appid=%2&units=metric")
+                      .arg(city, apiKey);
+    networkManager->get(QNetworkRequest(QUrl(url)));
+}
+
+void CenterLayout::onWeatherDataReceived(QNetworkReply* reply)
+{
+    if (reply->error() != QNetworkReply::NoError) {
+        if (!weatherLabels.empty())
+            weatherLabels[0]->setText("❌ Error: " + reply->errorString());
+        reply->deleteLater();
+        return;
+    }
+
+    auto json = QJsonDocument::fromJson(reply->readAll()).object();
+    auto main = json.value("main").toObject();
+    auto wind = json.value("wind").toObject();
+    auto weatherArr = json.value("weather").toArray();
+
+    if (weatherLabels.size() < 6 || main.isEmpty() || wind.isEmpty() || weatherArr.isEmpty()) {
+        weatherLabels[0]->setText("⚠️ Incomplete weather data.");
+        reply->deleteLater();
+        return;
+    }
+
+    const auto& weather = weatherArr[0].toObject();
+
+    weatherLabels[0]->setText(QString("🌡️ Temperature: %1 °C").arg(main["temp"].toDouble()));
+    weatherLabels[1]->setText(QString("☁️ Description: %1").arg(weather["description"].toString()));
+    weatherLabels[2]->setText(QString("📊 Pressure: %1 hPa").arg(main["pressure"].toInt()));
+    weatherLabels[3]->setText(QString("💧 Humidity: %1%").arg(main["humidity"].toInt()));
+    weatherLabels[4]->setText(QString("🌬️ Wind Speed: %1 m/s").arg(wind["speed"].toDouble()));
+    weatherLabels[5]->setText(QString("🕒 Updated at: %1").arg(QDateTime::currentDateTime().toString("hh:mm:ss")));
+
+    reply->deleteLater();
 }

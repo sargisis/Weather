@@ -41,6 +41,9 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
         HeaderLayout.h HeaderLayout.cpp
+        Auth.h Auth.cpp
+        Register.h Register.cpp
+        ForgotPassowrd.h ForgotPassowrd.cpp
     )
 else()
     add_executable(Weather

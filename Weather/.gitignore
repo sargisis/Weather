@@ -74,5 +74,5 @@ CMakeLists.txt.user*
 *.exe
 
 build
-
+*.node_modules
 

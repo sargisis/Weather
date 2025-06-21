@@ -1,44 +1,37 @@
+// LeftLayout.h
 #pragma once
 
-#include <cstddef>
-#include <QLabel>
 #include <QVBoxLayout>
-#include <QWidget>
+#include <QComboBox>
+#include <QLabel>
+#include <QLineEdit>
 #include <QPushButton>
-#include <QString>
-#include <QSet>
-#include <QMap>
-#include <QList>
 #include <QStringList>
+#include <QFrame>
 #include <QScrollArea>
-
+#include <memory>
 #include "Layouts.h"
-#include "HeaderLayout.h"
 
 class LeftLayout : public QVBoxLayout, public Layouts
 {
     Q_OBJECT
 public:
     explicit LeftLayout(QWidget* parent = nullptr);
-    virtual void createLayouts() override;
-    void createButtonsLeftLayout();
-    bool canInputCityForCountry(const QString& country);
-
-private slots:
-    void addButtons();
-    void selectCountry();
-
-private:
-    QVBoxLayout* m_left_layout {nullptr};
-    QPushButton* button {nullptr};
-    QVBoxLayout* containerLayout {nullptr};
-    QWidget* containerWidget {nullptr};
-    QSet<QPushButton*> clickedbuttons {nullptr};
-    QMap<QPushButton*, QList<QPushButton*>> addedButtons;
-    QStringList country_name {nullptr};
-    QStringList country_city_name {nullptr};
-    QScrollArea* scroll {nullptr};
+    void createLayouts() override;
 
 signals:
-    void countrySelected(const QString& country, bool isCityAllowed);
+    void countrySelected(const QString& country, const QString& city);
+
+private slots:
+    void handleSearch();
+
+private:
+    std::unique_ptr<QComboBox> countryDropdown;
+    std::unique_ptr<QLineEdit> cityInput;
+    std::unique_ptr<QPushButton> searchButton;
+
+    QVBoxLayout* cardsLayout = nullptr;
+    QStringList countries;
+    void addCityCard(const QString& city);
 };
+

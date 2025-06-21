@@ -1,32 +1,26 @@
 #pragma once
 
 #include <QVBoxLayout>
-#include <QWidget>
 #include <QLabel>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
-#include <QNetworkRequest>
-#include <QDateTime>
-#include <QString>
-#include <QUrl>
-#include <QJsonDocument>
-#include <QJsonObject>
-#include <QJsonArray>
-
+#include <memory>
+#include <vector>
+#include <QFrame>
 #include "Layouts.h"
 
 class RightLayout : public QVBoxLayout, public Layouts
 {
 public:
     explicit RightLayout(QWidget* parent = nullptr);
-    virtual void createLayouts() override;
+    void createLayouts() override;
     void fetchFutureWeather(const QString& city);
 
 private:
-    QVBoxLayout* m_right_layout {nullptr};
-    QLabel* m_right_label {nullptr};
-    QNetworkAccessManager* m_network_manager {nullptr};
-    QString m_apiKey;
+    std::unique_ptr<QNetworkAccessManager> networkManager;
+    std::vector<QFrame*> forecastCards;
 
-    void handleNetworkInfo(QNetworkReply* reply);
+    void onForecastData(QNetworkReply* reply);
+    void clearCards();
+    QFrame* createForecastCard(const QString& time, double temp, const QString& desc);
 };

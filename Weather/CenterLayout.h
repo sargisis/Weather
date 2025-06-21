@@ -1,15 +1,11 @@
 #pragma once
 
 #include <QVBoxLayout>
-#include <QWidget>
 #include <QLabel>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
-#include <QJsonDocument>
-#include <QJsonObject>
-#include <QUrl>
-#include <QJsonArray>
-
+#include <memory>
+#include <vector>
 #include "Layouts.h"
 
 class CenterLayout : public QVBoxLayout, public Layouts
@@ -17,17 +13,13 @@ class CenterLayout : public QVBoxLayout, public Layouts
     Q_OBJECT
 public:
     explicit CenterLayout(QWidget* parent = nullptr);
-    virtual void createLayouts() override;
+    void createLayouts() override;
+    void fetchWeatherDataForCity(const QString& city);
 
 private slots:
     void onWeatherDataReceived(QNetworkReply* reply);
 
 private:
-    QVBoxLayout* m_center_layout;
-    QLabel* m_center_label;
-    QNetworkAccessManager* m_networkManager;
-
-public:
-    void fetchWeatherData(const QString& latitude, const QString& longitude);
-    void fetchWeatherDataForCity(const QString& city);
+    std::unique_ptr<QNetworkAccessManager> networkManager;
+    std::vector<QLabel*> weatherLabels;
 };

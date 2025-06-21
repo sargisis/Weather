@@ -6,25 +6,24 @@
 #include "HeaderLayout.h"
 
 #include <QtWidgets>
-#include <QLabel>
-#include <QSize>
-#include <QResizeEvent>
+#include <memory>
 
 class HomePage : public QWidget
 {
     Q_OBJECT
 public:
-    HomePage(QWidget* parent = nullptr);
-public:
+    explicit HomePage(QWidget* parent = nullptr);
+
     void createLayout();
-    void resizeEvent(QResizeEvent* event) override;
-    void resizeWidgets();
-    double percent(double x, double y);
+
 private:
-    QWidget* m_central_widget;
-    QGridLayout* main_layout {nullptr};
-    HeaderLayout* m_header_layout {nullptr};
-    LeftLayout* m_left_layout;
-    RightLayout* m_right_layout;
-    CenterLayout* m_center_layout;
+    std::unique_ptr<QGridLayout> main_layout;
+    std::unique_ptr<HeaderLayout> m_header_layout;
+    std::unique_ptr<LeftLayout> m_left_layout;
+    std::unique_ptr<RightLayout> m_right_layout;
+    std::unique_ptr<CenterLayout> m_center_layout;
+
+    QWidget* leftWidget = nullptr;
+    QWidget* centerWidget = nullptr;
+    QWidget* rightWidget = nullptr;
 };
