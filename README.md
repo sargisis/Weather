@@ -29,4 +29,6 @@ Author 🖊️
 
 Developed by Sargis Abgaryan for learning Qt and creating a convenient weather application.
 
+start of development soon new Version 
+
 
