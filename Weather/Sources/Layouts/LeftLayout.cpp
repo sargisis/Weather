@@ -1,5 +1,5 @@
 // LeftLayout.cpp
-#include "LeftLayout.h"
+#include "../Headers/layouts/LeftLayout.h"
 
 LeftLayout::LeftLayout(QWidget* parent)
     : QVBoxLayout(parent)

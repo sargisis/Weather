@@ -6,14 +6,26 @@
 #include <QVBoxLayout>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
+#include <QMessageBox>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QNetworkRequest>
+#include <QUrl>
+#include <QScreen>
+#include <QGuiApplication>
+#include <QLabel>
+#include <QStyle>
 
-class ForgotPasswordWindow : public QWidget
+#include "../Headers/Interfaces/IForgotPassword.h"
+
+class ForgotPasswordWindow : public QWidget , public IForgotPassword
 {
     Q_OBJECT
 public:
     explicit ForgotPasswordWindow(QWidget *parent = nullptr);
 
 private slots:
+    void forgotPasswordUser(const QString& email) override;
     void onSendClicked();
 
 private:

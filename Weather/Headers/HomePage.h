@@ -5,7 +5,7 @@
 #include "CenterLayout.h"
 #include "HeaderLayout.h"
 
-#include <QtWidgets>
+#include <QWidget>
 #include <memory>
 
 class HomePage : public QWidget
@@ -13,7 +13,6 @@ class HomePage : public QWidget
     Q_OBJECT
 public:
     explicit HomePage(QWidget* parent = nullptr);
-
     void createLayout();
 
 private:

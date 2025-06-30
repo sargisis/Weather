@@ -1,4 +1,4 @@
-#include "HeaderLayout.h"
+#include "../Headers/HeaderLayout.h"
 
 HeaderLayout::HeaderLayout(QWidget* parent)
     : QHBoxLayout(parent),
