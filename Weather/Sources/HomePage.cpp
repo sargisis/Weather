@@ -1,4 +1,9 @@
-#include "HomePage.h"
+#include "../Headers/HomePage.h"
+#include <QScreen>
+#include <QGuiApplication>
+#include <QVBoxLayout>
+#include <QGridLayout>
+#include <QDebug>
 
 HomePage::HomePage(QWidget* parent)
     : QWidget(parent)
@@ -23,7 +28,6 @@ HomePage::HomePage(QWidget* parent)
 
     createLayout();
 
-    // ✅ Connect signal AFTER layouts are ready
     connect(m_left_layout.get(), &LeftLayout::countrySelected, this,
             [this](const QString& country, const QString& city) {
                 qDebug() << "Country:" << country << ", City:" << city;
@@ -32,10 +36,16 @@ HomePage::HomePage(QWidget* parent)
                     m_right_layout->fetchFutureWeather(city);
                 }
             });
+
+    // Center the window on screen
+    QScreen* screen = QGuiApplication::primaryScreen();
+    QRect screenGeometry = screen->geometry();
+    int x = (screenGeometry.width() - this->width()) / 2;
+    int y = (screenGeometry.height() - this->height()) / 2;
+    this->move(x, y);
 }
 
-
-    void HomePage::createLayout()
+void HomePage::createLayout()
 {
     main_layout = std::make_unique<QGridLayout>();
 
@@ -44,7 +54,6 @@ HomePage::HomePage(QWidget* parent)
     m_center_layout = std::make_unique<CenterLayout>();
     m_right_layout = std::make_unique<RightLayout>();
 
-    // Оборачиваем layouts в QWidget вручную
     leftWidget = new QWidget(this);
     {
         auto* wrapperLayout = new QVBoxLayout(leftWidget);
@@ -80,5 +89,3 @@ HomePage::HomePage(QWidget* parent)
 
     setLayout(main_layout.get());
 }
-
-

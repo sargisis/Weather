@@ -7,12 +7,12 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
 
     HomePage mainApp;
-    // AuthWindow loginWindow;
+    AuthWindow loginWindow;
 
-    // QObject::connect(&loginWindow, &AuthWindow::authSuccess, [&]() {
+     QObject::connect(&loginWindow, &AuthWindow::authSuccess, [&]() {
+         mainApp.show();
+    });
 
-    // });
-    mainApp.show();
-    // loginWindow.show();
+     loginWindow.show();
     return app.exec();
 }
