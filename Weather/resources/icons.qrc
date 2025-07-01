@@ -1,0 +1,40 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file>cloud.svg</file>
+        <file>cloud-fog.svg</file>
+        <file>cloud-lightning.svg</file>
+        <file>cloud-moon.svg</file>
+        <file>cloud-rain.svg</file>
+        <file>cloud-snow.svg</file>
+        <file>cloud-sun.svg</file>
+        <file>drop.svg</file>
+        <file>drop-half.svg</file>
+        <file>drop-half-bottom.svg</file>
+        <file>drop-simple.svg</file>
+        <file>drop-slash.svg</file>
+        <file>feather.svg</file>
+        <file>fire.svg</file>
+        <file>fire-simple.svg</file>
+        <file>flame.svg</file>
+        <file>hurricane.svg</file>
+        <file>lightning.svg</file>
+        <file>meteor.svg</file>
+        <file>moon.svg</file>
+        <file>moon-stars.svg</file>
+        <file>rainbow.svg</file>
+        <file>rainbow-cloud.svg</file>
+        <file>snowflake.svg</file>
+        <file>sun.svg</file>
+        <file>sun-dim.svg</file>
+        <file>sun-horizon.svg</file>
+        <file>thermometer-cold.svg</file>
+        <file>thermometer-hot.svg</file>
+        <file>thermometer-simple.svg</file>
+        <file>tornado.svg</file>
+        <file>umbrella.svg</file>
+        <file>umbrella-simple.svg</file>
+        <file>waves.svg</file>
+        <file>wind.svg</file>
+        <file>clock.svg</file>
+        <file>key.svg</file> </qresource>
+</RCC>

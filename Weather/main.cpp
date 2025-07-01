@@ -10,8 +10,9 @@ int main(int argc, char *argv[])
     AuthWindow loginWindow;
 
      QObject::connect(&loginWindow, &AuthWindow::authSuccess, [&]() {
-         mainApp.show();
+        mainApp.show();
     });
+
 
      loginWindow.show();
     return app.exec();
