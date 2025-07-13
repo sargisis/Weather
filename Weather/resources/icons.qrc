@@ -36,5 +36,7 @@
         <file>waves.svg</file>
         <file>wind.svg</file>
         <file>clock.svg</file>
-        <file>key.svg</file> </qresource>
+        <file>key.svg</file>
+        <file>thermometer.svg</file>
+</qresource>
 </RCC>

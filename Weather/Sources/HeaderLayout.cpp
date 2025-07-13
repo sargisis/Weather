@@ -1,158 +1,174 @@
-#include "../Headers/HeaderLayout.h" // Включаем заголовочный файл для класса HeaderLayout
-#include <QAction>           // Для добавления иконок в QLineEdit
-#include <QIcon>             // Для работы с иконками
-#include <QJsonDocument>     // Для парсинга JSON-ответов
-#include <QJsonObject>       // Для работы с JSON-объектами
-#include <QJsonArray>        // Для работы с JSON-массивами
-#include <QUrlQuery>         // Для формирования параметров URL-запроса
-#include <QUrl>              // Для работы с URL-адресами
-#include <QDebug>            // Для вывода отладочных сообщений
+#include "../Headers/HeaderLayout.h"
+#include <QAction>
+#include <QIcon>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
+#include <QUrlQuery>
+#include <QUrl>
+#include <QDebug>
+#include <QAbstractItemView>
 
-// Конструктор класса HeaderLayout.
-// Наследуется от QHBoxLayout, поэтому может быть использован как макет.
 HeaderLayout::HeaderLayout(QWidget* parent)
-    : QHBoxLayout(parent), // Вызов конструктора базового класса QHBoxLayout
-    m_search(std::make_unique<QLineEdit>()) // Инициализация unique_ptr для QLineEdit
+    : QHBoxLayout(parent),
+    m_search(std::make_unique<QLineEdit>())
 {
-    // Применение CSS-стилей к полю ввода m_search.
+    m_search->setPlaceholderText("Search your city...");
+    QAction* searchIcon = new QAction(QIcon(":/icons/search.png"), "", m_search.get());
+    m_search->addAction(searchIcon, QLineEdit::LeadingPosition);
+
     m_search->setStyleSheet(R"(
         QLineEdit {
-            padding: 8px 36px 8px 12px; /* Внутренние отступы (top right bottom left) */
-            font-size: 16px;          /* Размер шрифта */
-            border-radius: 12px;      /* Скругление углов */
-            background-color: #2d2d2d; /* Темный фон поля */
-            border: 1px solid #444;   /* Серая граница */
-            color: white;             /* Цвет текста */
+            background-color: #2b2b2b;
+            border: 1px solid #444;
+            border-radius: 12px;
+            padding: 10px 40px 10px 15px;
+            font-size: 17px;
+            color: #e0e0e0;
+            selection-background-color: #007BFF;
+            selection-color: white;
         }
-        QLineEdit:focus { /* Стиль при фокусе на поле ввода */
-            border: 1px solid #007BFF; /* Синяя граница */
+        QLineEdit:focus {
+            border: 1px solid #0099ff;
+            background-color: #333;
+        }
+        QLineEdit::placeholder {
+            color: #999;
         }
     )");
 
-    // Установка текста-заполнителя для поля ввода.
-    m_search->setPlaceholderText("Search your city...");
+    m_logoutBtn = new QPushButton("Log Out");
+    m_logoutBtn->setStyleSheet(R"(
+        QPushButton {
+            background-color: #d9534f;
+            color: white;
+            border-radius: 8px;
+            padding: 6px 12px;
+            font-weight: bold;
+            font-size: 13px;
+        }
+        QPushButton:hover {
+            background-color: #c9302c;
+        }
+    )");
+    m_logoutBtn->setFixedHeight(36);
+    m_logoutBtn->setCursor(Qt::PointingHandCursor);
 
-    // Создание QAction с иконкой поиска и добавление его в QLineEdit.
-    // QAction позволяет добавить кнопку или иконку прямо в поле ввода.
-    // ":/icons/search.png" - путь к иконке в ресурсах Qt.
-    QAction* searchIcon = new QAction(QIcon(":/icons/search.png"), "", m_search.get());
-    m_search->addAction(searchIcon, QLineEdit::LeadingPosition); // Добавляем иконку в начальную позицию (слева).
+    connect(m_logoutBtn, &QPushButton::clicked, this, &HeaderLayout::onLogoutClicked);
 
-    // Настройка макета.
-    addStretch(); // Добавляем растягивающееся пространство слева (для центрирования поля ввода).
-    addWidget(m_search.get(), 1); // Добавляем поле ввода, с фактором растяжения 1.
-    addStretch(); // Добавляем растягивающееся пространство справа.
-
-    // Устанавливаем отступы для всего макета.
-    setContentsMargins(10, 10, 10, 10);
-
-    // --- Инициализация автодополнения (Autocomplete) ---
-    // Создаем QNetworkAccessManager для выполнения сетевых запросов к API автодополнения.
     m_autocompleteNetworkManager = new QNetworkAccessManager(this);
-    // Создаем QStringListModel, который будет хранить список предложений для автодополнения.
     m_completerModel = new QStringListModel(this);
-    // Создаем QCompleter и связываем его с моделью данных.
     m_cityCompleter = new QCompleter(m_completerModel, this);
-    m_cityCompleter->setCaseSensitivity(Qt::CaseInsensitive); // Делаем автодополнение нечувствительным к регистру.
-    m_cityCompleter->setFilterMode(Qt::MatchContains);       // Совпадение, если текст содержится где-либо в предложении.
-    m_cityCompleter->setCompletionMode(QCompleter::PopupCompletion); // Предложения будут отображаться во всплывающем окне.
-    // Устанавливаем QCompleter для поля ввода поиска.
+    m_cityCompleter->setCaseSensitivity(Qt::CaseInsensitive);
+    m_cityCompleter->setFilterMode(Qt::MatchContains);
+    m_cityCompleter->setCompletionMode(QCompleter::PopupCompletion);
     m_search->setCompleter(m_cityCompleter);
 
-    // --- Подключение сигналов/слотов ---
-    // Сигнал textEdited испускается, когда текст в поле ввода был изменен пользователем.
-    // Подключаем его к нашему слоту onSearchTextEdited для запуска запросов автодополнения.
+    if (m_cityCompleter->popup()) {
+        m_cityCompleter->popup()->setStyleSheet(R"(
+            QAbstractItemView {
+                background-color: #2c3e50;
+                border: 1px solid #3498db;
+                border-radius: 5px;
+                padding: 3px;
+                outline: none;
+            }
+            QListView::item {
+                padding: 8px 12px;
+                color: #ecf0f1;
+                font-size: 15px;
+                border-radius: 3px;
+                margin-bottom: 1px;
+            }
+            QListView::item:selected {
+                background-color: #3498db;
+                color: white;
+                font-weight: bold;
+            }
+            QListView::item:hover {
+                background-color: #1abc9c;
+                color: white;
+            }
+        )");
+    }
+
     connect(m_search.get(), &QLineEdit::textEdited, this, &HeaderLayout::onSearchTextEdited);
-    // Сигнал finished от QNetworkAccessManager испускается после получения ответа на сетевой запрос.
-    // Подключаем его к нашему слоту onAutocompleteDataReceived для обработки данных автодополнения.
     connect(m_autocompleteNetworkManager, &QNetworkAccessManager::finished, this, &HeaderLayout::onAutocompleteDataReceived);
-    // Сигнал activated от QCompleter испускается, когда пользователь выбирает элемент из списка автодополнения.
-    // Используем QOverload, чтобы явно указать версию activated(const QString&).
     connect(m_cityCompleter, QOverload<const QString&>::of(&QCompleter::activated), this, &HeaderLayout::onCityCompletionSelected);
-    // Сигнал returnPressed испускается, когда пользователь нажимает Enter в поле ввода.
-    // Подключаем его к нашему слоту onSearchReturnPressed для обработки введенного города.
     connect(m_search.get(), &QLineEdit::returnPressed, this, &HeaderLayout::onSearchReturnPressed);
+
+    // Расположение: поле + отступ + кнопка
+    addStretch();
+    addWidget(m_search.get(), 1);
+    addSpacing(10);
+    addWidget(m_logoutBtn);
+    addStretch();
+    setContentsMargins(10, 10, 10, 10);
 }
 
-// Метод для обновления текста-заполнителя в поле поиска.
-// Используется для адаптации подсказки в зависимости от того, разрешен ли поиск по городу
-// или только по стране (если это приложение для погоды, например).
 void HeaderLayout::updateSearchPlaceholder(const QString& country, bool isCityAllowed)
 {
     if (isCityAllowed) {
-        m_search->setPlaceholderText("Search your city..."); // Стандартная подсказка для поиска по городу.
+        m_search->setPlaceholderText("Search your city...");
     } else {
-        // Подсказка, указывающая, что поиск ограничен определенной страной.
         m_search->setPlaceholderText(QString("Search in %1...").arg(country));
     }
 }
 
-// Слот, вызываемый при изменении текста в поле поиска.
 void HeaderLayout::onSearchTextEdited(const QString& text)
 {
-    // Если длина текста меньше 3 символов, очищаем список предложений.
-    // Это предотвращает отправку слишком частых или неинформативных запросов.
     if (text.length() < 3) {
         m_completerModel->setStringList(QStringList());
         return;
     }
 
-    // Формируем URL для Google Places Autocomplete API.
     QUrl url("https://maps.googleapis.com/maps/api/place/autocomplete/json");
-    QUrlQuery query; // Объект для формирования параметров запроса.
-    query.addQueryItem("input", text); // Входной текст для автодополнения.
-    query.addQueryItem("types", "(cities)"); // Ограничиваем поиск только городами.
-    query.addQueryItem("language", "en"); // Устанавливаем язык для предложений (английский).
-    query.addQueryItem("key", GOOGLE_PLACES_API_KEY); // Используем ваш API-ключ Google Places.
-    url.setQuery(query); // Устанавливаем параметры запроса для URL.
+    QUrlQuery query;
+    query.addQueryItem("input", text);
+    query.addQueryItem("types", "(cities)");
+    query.addQueryItem("language", "en");
+    query.addQueryItem("key", GOOGLE_PLACES_API_KEY);
+    url.setQuery(query);
 
-    // Отправляем GET-запрос к API автодополнения.
     m_autocompleteNetworkManager->get(QNetworkRequest(url));
 }
 
-// Слот, вызываемый после получения ответа от API автодополнения.
 void HeaderLayout::onAutocompleteDataReceived(QNetworkReply* reply)
 {
-    // Проверяем наличие сетевых ошибок.
     if (reply->error() != QNetworkReply::NoError) {
-        qWarning() << "Autocomplete API Error:" << reply->errorString(); // Выводим ошибку.
-        reply->deleteLater(); // Помечаем объект QNetworkReply для удаления.
+        qWarning() << "Autocomplete API Error:" << reply->errorString();
+        reply->deleteLater();
         return;
     }
 
-    // Парсим JSON-ответ от API.
     QJsonDocument jsonResponse = QJsonDocument::fromJson(reply->readAll());
     QJsonObject jsonObject = jsonResponse.object();
 
-    QStringList suggestions; // Список для хранения полученных предложений.
-    // Извлекаем массив "predictions" из JSON-объекта.
+    QStringList suggestions;
     QJsonArray predictions = jsonObject["predictions"].toArray();
-    // Итерируемся по каждому предсказанию (предложению) в массиве.
     for (const QJsonValue& value : predictions) {
         QJsonObject prediction = value.toObject();
-        // Извлекаем "description" (полное название города с регионом/страной) и добавляем в список.
         suggestions.append(prediction["description"].toString());
     }
 
-    // Обновляем модель QCompleter новым списком предложений.
     m_completerModel->setStringList(suggestions);
-    reply->deleteLater(); // Помечаем объект QNetworkReply для удаления.
+    reply->deleteLater();
 }
 
-// Слот, вызываемый, когда пользователь выбирает город из списка автодополнения.
 void HeaderLayout::onCityCompletionSelected(const QString& text)
 {
-    // Испускаем сигнал citySelected, передавая только название города
-    // (отделяем его от остальной части строки, например, "Лондон, Великобритания" -> "Лондон").
     emit citySelected(text.split(",").first().trimmed());
 }
 
-// Слот, вызываемый, когда пользователь нажимает Enter в поле поиска.
 void HeaderLayout::onSearchReturnPressed()
 {
-    QString enteredText = m_search->text().trimmed(); // Получаем введенный текст.
-    if (!enteredText.isEmpty()) { // Если текст не пуст.
-        // Испускаем сигнал citySelected, аналогично выбору из автодополнения.
+    QString enteredText = m_search->text().trimmed();
+    if (!enteredText.isEmpty()) {
         emit citySelected(enteredText.split(",").first().trimmed());
     }
+}
+
+void HeaderLayout::onLogoutClicked()
+{
+    emit logoutRequested(); // Подключи это в своём основном окне к логике выхода
 }

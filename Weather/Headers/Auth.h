@@ -22,7 +22,8 @@
 // Предполагается, что эти классы существуют и корректно определены.
 #include "../Headers/Register.h"        // Окно регистрации
 #include "../Headers/ForgotPassowrd.h"  // Окно восстановления пароля
-#include "../Headers/Login.h"           // Окно для логики входа (вероятно, отправляет запросы к вашему API)
+#include "../Headers/Login.h"// Окно для логики входа (вероятно, отправляет запросы к вашему API)
+#include "GoogleAuthServer.h"
 
 class AuthWindow : public QWidget {
     Q_OBJECT // Макрос, необходимый для использования сигналов и слотов в Qt
@@ -30,6 +31,7 @@ class AuthWindow : public QWidget {
 public:
     // Конструктор класса. Принимает родительский виджет.
     explicit AuthWindow(QWidget* parent = nullptr);
+
 
 signals:
     // Сигнал, который испускается, когда аутентификация пользователя прошла успешно.
@@ -40,9 +42,10 @@ private:
     // Обрабатывает процесс входа через Google.
     void handleGoogleSignIn();
     // Запускает локальный TCP-сервер для перехвата редиректа от Google OAuth.
-    void startLocalServer();
+
     // Обменивает полученный код авторизации Google на токены доступа и обновления.
     void exchangeCodeForToken(const QString& code);
+     void startLocalServer();
 
     QLineEdit* email_input;    // Поле ввода для email.
     QLineEdit* password_input; // Поле ввода для пароля.

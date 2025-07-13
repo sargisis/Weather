@@ -248,3 +248,5 @@ void RightLayout::clearCards()
     }
     forecastCards.clear(); // Очищаем вектор.
 }
+
+

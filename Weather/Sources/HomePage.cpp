@@ -83,6 +83,12 @@ void HomePage::createLayout()
         }
     });
 
+    connect(m_header_layout.get(), &HeaderLayout::logoutRequested, this, [this]() {
+        QSettings settings("MyCompany", "WeatherApp");
+        settings.remove("refresh_token");
+        emit requestLogout();
+    });
+
     // Добавление макетов и виджетов в основной QGridLayout.
     // m_header_layout занимает всю верхнюю строку (строка 0, столбец 0, растягиваясь на 1 строку и 2 столбца).
     main_layout->addLayout(m_header_layout.get(), 0, 0, 1, 2);
@@ -106,3 +112,5 @@ void HomePage::createLayout()
     // Устанавливаем созданный QGridLayout как основной макет для HomePage.
     setLayout(main_layout.get());
 }
+
+
