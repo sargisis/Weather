@@ -3,9 +3,11 @@
 #include "RightLayout.h" // Включаем заголовок для RightLayout (прогноз погоды)
 #include "CenterLayout.h" // Включаем заголовок для CenterLayout (текущая погода)
 #include "HeaderLayout.h" // Включаем заголовок для HeaderLayout (строка поиска)
+#include "Login.h"
 
 #include <QWidget>      // Базовый класс для всех виджетов пользовательского интерфейса
 #include <memory>       // Для использования std::unique_ptr для управления памятью макетов
+#include <QSettings>
 
 // Класс HomePage представляет собой главное окно вашего погодного приложения.
 // Он отвечает за общую компоновку и взаимодействие между различными секциями.
@@ -34,4 +36,8 @@ private:
     // или более сложной структуры удобно обернуть QLayout в QWidget).
     QWidget* centerWidget = nullptr; // Виджет-обертка для CenterLayout.
     QWidget* rightWidget = nullptr;  // Виджет-обертка для RightLayout.
+
+
+signals:
+     void requestLogout();
 };

@@ -6,14 +6,19 @@ int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
 
-    HomePage mainApp;
-    AuthWindow loginWindow;
+    auto* loginWindow = new AuthWindow();
+    auto* mainApp = new HomePage();
 
-     QObject::connect(&loginWindow, &AuthWindow::authSuccess, [&]() {
-        mainApp.show();
+    QObject::connect(loginWindow, &AuthWindow::authSuccess, [&]() {
+        loginWindow->hide();
+        mainApp->show();
     });
 
+    QObject::connect(mainApp, &HomePage::requestLogout, [&]() {
+        mainApp->hide();
+        loginWindow->show();
+    });
 
-     loginWindow.show();
+    loginWindow->show();
     return app.exec();
 }

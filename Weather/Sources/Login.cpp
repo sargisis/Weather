@@ -35,7 +35,7 @@ LogINWindow::LogINWindow(QWidget* parent)
 void LogINWindow::LogInUser(const QString &email, const QString &password)
 {
     // Ваш Firebase Web API Key. Важно: для клиентских приложений это обычно не считается секретом.
-    const QString API_KEY = "AIzaSyC6Jtos6Qydb0SuwCo8AFUSwyNJ-H7Vkys";
+    const QString API_KEY = "AIzaSyBwbdcguYkqe8t4mtYJ8QRQgv_V6TtSL4A";
 
     // Формируем URL для Firebase Authentication REST API для входа по паролю.
     QUrl url("https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=" + API_KEY);
