@@ -10,17 +10,6 @@
         // Применяем общие стили для окна через QSS (Qt Style Sheets).
         this->setStyleSheet("background-color: #1e1e1e; color: white; border-radius: 12px;");
 
-        // Автоматический вход, если существует refresh_token
-        // Используем QSettings для доступа к пользовательским настройкам приложения.
-        QSettings settings("MyCompany", "WeatherApp"); // "MyCompany" и "WeatherApp" - идентификаторы приложения.
-        QString savedToken = settings.value("refresh_token").toString(); // Пытаемся получить сохраненный refresh_token.
-        settings.sync();
-        if (!savedToken.isEmpty()) { // Если токен существует (не пустой)
-            emit authSuccess(); // Испускаем сигнал об успешной аутентификации.
-            this->close();     // Закрываем текущее окно аутентификации.
-            return;            // Выходим из конструктора.
-        }
-
         // Определение стилей для различных элементов UI с помощью QSS
         QString inputStyle = R"(
             QLineEdit {
@@ -153,7 +142,7 @@
                     this->close();      // Закрываем окно аутентификации.
                 }
             });
-            logInWin->LogInUser(email, password); // Вызываем метод для попытки входа.
+            logInWin->onLogInImpl(email, password); // Вызываем метод для попытки входа.
         });
 
         // Соединение для кнопки "Register"
@@ -175,7 +164,7 @@
                                 this->close();
                             }
                         });
-                        logInWin->LogInUser(email, password); // Автоматически пытаемся войти с новыми данными.
+                        logInWin->onLogInImpl(email, password); // Автоматически пытаемся войти с новыми данными.
                     });
 
             regWin->show(); // Показываем окно регистрации.
@@ -284,7 +273,7 @@
         // Первый запрос — обмен кода на токен
         QNetworkReply* exchangeReply = network->post(request, params.toString(QUrl::FullyEncoded).toUtf8());
 
-        connect(exchangeReply, &QNetworkReply::finished, this, [=]() {
+        connect(exchangeReply, &QNetworkReply::finished, this, [=,this]() {
             if (exchangeReply->error() == QNetworkReply::NoError) {
                 QByteArray replyData = exchangeReply->readAll();
                 QJsonDocument doc = QJsonDocument::fromJson(replyData);
@@ -299,7 +288,7 @@
                 }
 
                 // Второй запрос — проверка idToken в Firebase
-                QUrl firebaseUrl("https://identitytoolkit.googleapis.com/v1/accounts:signInWithIdp?key=AIzaSyBwbdcguYkqe8t4mtYJ8QRQgv_V6TtSL4A");
+                QUrl firebaseUrl("https://identitytoolkit.googleapis.com/v1/accounts:signInWithIdp?key=AIzaSyAbg8ncf2sH2dRIkfcF6UlcUNdbujSmaQ4");
                 QNetworkRequest firebaseRequest(firebaseUrl);
                 firebaseRequest.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
 
@@ -311,7 +300,7 @@
 
                 QNetworkReply* firebaseReply = network->post(firebaseRequest, QJsonDocument(payload).toJson());
 
-                connect(firebaseReply, &QNetworkReply::finished, this, [=]() {
+                connect(firebaseReply, &QNetworkReply::finished, this, [=,this]() {
                     if (firebaseReply->error() == QNetworkReply::NoError) {
                         // Успешная проверка пользователя
                         QSettings settings("MyCompany", "WeatherApp");

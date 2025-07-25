@@ -9,33 +9,43 @@
 #include <QCompleter>
 #include <memory>
 
-#ifndef GOOGLE_PLACES_API_KEY
-#define GOOGLE_PLACES_API_KEY "AIzaSyBcaW9EOU51kLZv2msprJ6efKfJ4ElK7Gg"
-#endif
+// Ключ API для Google Places Autocomplete
+#define GOOGLE_PLACES_API_KEY "AIzaSyBu0eQNuDh8Tml1gw5gY46evZs3PSSwxo0"
 
+// HeaderLayout — горизонтальный лейаут, содержащий поле поиска с автодополнением.
+// Выполняет запросы к Google Places API для получения подсказок по городам.
 class HeaderLayout : public QHBoxLayout
 {
     Q_OBJECT
 
 public:
     explicit HeaderLayout(QWidget* parent = nullptr);
+
+    // Обновляет placeholder поля поиска в зависимости от страны и доступности городов
     void updateSearchPlaceholder(const QString& country, bool isCityAllowed);
+
+    // Поле ввода для поиска города
     std::unique_ptr<QLineEdit> m_search;
-    QPushButton* m_logoutBtn;
 
 signals:
+    // Сигнал испускается при выборе города пользователем
     void citySelected(const QString& text);
-    void logoutRequested();
 
 private slots:
+    // Обработчик изменения текста в поиске
     void onSearchTextEdited(const QString& text);
+
+    // Обработчик ответа от Google Places API
     void onAutocompleteDataReceived(QNetworkReply* reply);
+
+    // Обработчик выбора города из подсказок
     void onCityCompletionSelected(const QString& text);
+
+    // Обработчик нажатия Enter в поле поиска
     void onSearchReturnPressed();
-    void onLogoutClicked();
 
 private:
-    QNetworkAccessManager* m_autocompleteNetworkManager;
-    QStringListModel* m_completerModel;
-    QCompleter* m_cityCompleter;
+    QNetworkAccessManager* m_autocompleteNetworkManager = nullptr;
+    QStringListModel* m_completerModel = nullptr;
+    QCompleter* m_cityCompleter = nullptr;
 };

@@ -45,7 +45,7 @@ private:
 
     // Обменивает полученный код авторизации Google на токены доступа и обновления.
     void exchangeCodeForToken(const QString& code);
-     void startLocalServer();
+    void startLocalServer();
 
     QLineEdit* email_input;    // Поле ввода для email.
     QLineEdit* password_input; // Поле ввода для пароля.

@@ -38,5 +38,10 @@
         <file>clock.svg</file>
         <file>key.svg</file>
         <file>thermometer.svg</file>
+        <file>bell-simple-ringing.svg</file>
+        <file>globe-simple.svg</file>
+        <file>nut.svg</file>
+        <file>list.svg</file>
+        <file>user.svg</file>
 </qresource>
 </RCC>

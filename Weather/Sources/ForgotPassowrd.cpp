@@ -135,7 +135,7 @@ void ForgotPasswordWindow::onSendClicked() {
     QString email = email_input->text().trimmed(); // Получаем текст из поля email, удаляя пробелы по краям.
     if (!email.isEmpty()) // Проверяем, что email не пуст.
     {
-        forgotPasswordUser(email); // Если email введен, вызываем функцию для отправки запроса.
+        onForgotPasswordImpl(email); // Если email введен, вызываем функцию для отправки запроса.
     }
     else // Если email пуст, выводим предупреждение.
     {
@@ -144,7 +144,7 @@ void ForgotPasswordWindow::onSendClicked() {
 }
 
 // Отправляет запрос на сброс пароля к сервису Firebase Authentication.
-void ForgotPasswordWindow::forgotPasswordUser(const QString &email)
+void ForgotPasswordWindow::onForgotPasswordImpl(const QString &email)
 {
     // Ваш API-ключ для Firebase. В реальных проектах он должен быть частью конфигурации,
     // а не жестко закодирован, но для клиента это обычно не секрет.

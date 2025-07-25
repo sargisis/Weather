@@ -23,6 +23,7 @@ set(PROJECT_SOURCES
     # Layouts
     Sources/layouts/RightLayout.cpp
     Sources/layouts/CenterLayout.cpp
+    Sources/Layouts/NavigationLayout.cpp
     Sources/Layouts.cpp
     Sources/HeaderLayout.cpp
 
@@ -37,6 +38,8 @@ set(PROJECT_SOURCES
     Sources/ILoginWindow.cpp
     Sources/IRegisterWindow.cpp
     Sources/GoogleAuthServer.cpp
+    Sources/INavIterface.cpp
+
 
     # Headers
     Headers/HomePage.h
@@ -51,11 +54,13 @@ set(PROJECT_SOURCES
 
     Headers/layouts/RightLayout.h
     Headers/layouts/CenterLayout.h
+    Headers/layouts/NavigationLayout.h
 
     Headers/interfaces/IWindowFactory.h
     Headers/interfaces/ILoginWindow.h
     Headers/interfaces/IRegisterWindow.h
     Headers/interfaces/IForgotPassword.h
+    Headers/Interfaces/INavIterface.h
 
     # Resources
     resources/icons.qrc
@@ -69,6 +74,7 @@ if(QT_VERSION_MAJOR EQUAL 6)
 else()
     add_executable(Weather
         ${PROJECT_SOURCES}
+
     )
 endif()
 

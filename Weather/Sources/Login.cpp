@@ -32,7 +32,7 @@ LogINWindow::LogINWindow(QWidget* parent)
 // Метод для выполнения входа пользователя с использованием Firebase Authentication.
 // email - электронная почта пользователя.
 // password - пароль пользователя.
-void LogINWindow::LogInUser(const QString &email, const QString &password)
+void LogINWindow::onLogInImpl(const QString &email, const QString &password)
 {
     // Ваш Firebase Web API Key. Важно: для клиентских приложений это обычно не считается секретом.
     const QString API_KEY = "AIzaSyBwbdcguYkqe8t4mtYJ8QRQgv_V6TtSL4A";

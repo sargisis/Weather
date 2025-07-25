@@ -1,43 +1,49 @@
 #pragma once
 
-#include "RightLayout.h" // Включаем заголовок для RightLayout (прогноз погоды)
-#include "CenterLayout.h" // Включаем заголовок для CenterLayout (текущая погода)
-#include "HeaderLayout.h" // Включаем заголовок для HeaderLayout (строка поиска)
+#include "RightLayout.h"
+#include "CenterLayout.h"
+#include "HeaderLayout.h"
+#include "NavigationLayout.h"
 #include "Login.h"
 
-#include <QWidget>      // Базовый класс для всех виджетов пользовательского интерфейса
-#include <memory>       // Для использования std::unique_ptr для управления памятью макетов
+#include <QWidget>
+#include <memory>
 #include <QSettings>
+#include <QPushButton>
+#include <QFrame>
+#include <QHBoxLayout>
+#include <QGridLayout>
 
-// Класс HomePage представляет собой главное окно вашего погодного приложения.
-// Он отвечает за общую компоновку и взаимодействие между различными секциями.
+// Класс HomePage представляет основное окно приложения после авторизации.
+// Содержит разметку: заголовок (HeaderLayout), центральный блок, правую панель и навигационное меню.
 class HomePage : public QWidget
 {
-    Q_OBJECT // Макрос, необходимый для использования сигналов и слотов в Qt
+    Q_OBJECT
 
 public:
-    // Конструктор класса. Принимает родительский виджет.
     explicit HomePage(QWidget* parent = nullptr);
-    // Метод для создания и настройки всех макетов и виджетов на главной странице.
+
+    // Создает и инициализирует все вложенные лэйауты и виджеты.
     void createLayout();
 
 private:
-    // Уникальные указатели для управления жизненным циклом макетов.
-    // std::unique_ptr гарантирует, что объекты будут автоматически удалены,
-    // когда HomePage будет уничтожен, предотвращая утечки памяти.
-    std::unique_ptr<QGridLayout> main_layout;       // Главный макет окна (сетка).
-    std::unique_ptr<HeaderLayout> m_header_layout;  // Макет для верхней части (поиск города).
-    std::unique_ptr<RightLayout> m_right_layout;    // Макет для правой части (прогноз на несколько дней).
-    std::unique_ptr<CenterLayout> m_center_layout;  // Макет для центральной части (текущая погода).
+    // Главный макет для размещения всех блоков по сетке.
+    std::unique_ptr<QGridLayout> main_layout;
 
-    // QWidget* для обертывания CenterLayout и RightLayout.
-    // Это необходимо, потому что QGridLayout может добавлять только QWidget*,
-    // а не QLayout* напрямую (хотя addLayout() есть, но иногда для стилизации
-    // или более сложной структуры удобно обернуть QLayout в QWidget).
-    QWidget* centerWidget = nullptr; // Виджет-обертка для CenterLayout.
-    QWidget* rightWidget = nullptr;  // Виджет-обертка для RightLayout.
+    // Верхняя строка с поиском и другими контролами.
+    std::unique_ptr<HeaderLayout> m_header_layout;
 
+    // Правая панель с будущей погодой и дополнительной информацией.
+    std::unique_ptr<RightLayout> m_right_layout;
 
-signals:
-     void requestLogout();
+    // Центральная панель с текущей погодой.
+    std::unique_ptr<CenterLayout> m_center_layout;
+
+    // Навигационное меню слева.
+    std::unique_ptr<NavigationLayout> m_navigation_layout;
+
+    // Обертки для лэйаутов — используются как контейнеры для установки на grid layout.
+    QWidget* centerWidget = nullptr;
+    QWidget* rightWidget = nullptr;
+    QWidget* navigationWidget = nullptr;
 };

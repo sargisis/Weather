@@ -20,7 +20,7 @@
 // Это подразумевает, что ForgotPasswordWindow реализует методы, определенные в этом интерфейсе.
 #include "../Headers/Interfaces/IForgotPassword.h"
 
-class ForgotPasswordWindow : public QWidget , public IForgotPassword // Наследуемся от QWidget и реализуем IForgotPassword
+class ForgotPasswordWindow : public QWidget , public IForgotPassword<ForgotPasswordWindow> // Наследуемся от QWidget и реализуем IForgotPassword
 {
     Q_OBJECT // Макрос, необходимый для использования сигналов и слотов в Qt
 
@@ -31,7 +31,7 @@ public:
 private slots:
     // Переопределенный метод из интерфейса IForgotPassword.
     // Этот слот отвечает за отправку запроса на сброс пароля на сервер Firebase.
-    void forgotPasswordUser(const QString& email) override;
+    void onForgotPasswordImpl(const QString& email);
     // Слот, который вызывается при нажатии на кнопку "Send Reset Link".
     void onSendClicked();
 

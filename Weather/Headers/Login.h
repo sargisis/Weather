@@ -28,7 +28,7 @@
 // Важное замечание: При множественном наследовании в Qt, класс, который наследуется от QObject (или его потомка, как QWidget),
 // должен быть первым в списке наследования, чтобы макрос Q_OBJECT работал корректно.
 // Поэтому, `public QWidget, public ILoginWindow` является более предпочтительным.
-class LogINWindow : public QWidget, public ILoginWindow
+class LogINWindow : public QWidget, public ILoginWindow<LogINWindow>
 {
     Q_OBJECT // Макрос, необходимый для использования сигналов и слотов в Qt (если бы они были здесь)
 
@@ -47,7 +47,7 @@ private:
 public:
     // Переопределенный метод из интерфейса ILoginWindow.
     // Отвечает за отправку запроса на вход пользователя к Firebase.
-    void LogInUser(const QString& email, const QString& password) override;
+    void onLogInImpl(const QString& email , const QString& password);
     // Метод для проверки, был ли вход успешным.
     bool wasSuccessful() const { return loginSuccessful; }
 };
