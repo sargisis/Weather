@@ -4,14 +4,28 @@
 #include <QWidget>
 #include <QString>
 
+// Интерфейс фабрики окон, использующий CRTP для статической диспетчеризации
+template <typename Derived>
 class IWindowFactory
 {
 public:
-    virtual ~IWindowFactory() = default;
+    // Создаёт окно входа
+    QWidget* createLoginWindow(QWidget* parent = nullptr) {
+        return static_cast<Derived*>(this)->createLoginWindowImpl(parent);
+    }
 
-    virtual QWidget* createLoginWindow(QWidget* parent = nullptr) = 0;
-    virtual QWidget* createRegisterWindow(QWidget* parent = nullptr) = 0;
-    virtual QWidget* createForgotPasswordWindow(QWidget* parent = nullptr) = 0;
+    // Создаёт окно регистрации
+    QWidget* createRegisterWindow(QWidget* parent = nullptr) {
+        return static_cast<Derived*>(this)->createRegisterWindowImpl(parent);
+    }
+
+    // Создаёт окно восстановления пароля
+    QWidget* createForgotPasswordWindow(QWidget* parent = nullptr) {
+        return static_cast<Derived*>(this)->createForgotPasswordWindowImpl(parent);
+    }
+
+    // Виртуальный деструктор по-прежнему можно оставить, если нужен полиморфизм позже
+    virtual ~IWindowFactory() = default;
 };
 
 #endif // IWINDOWFACTORY_H

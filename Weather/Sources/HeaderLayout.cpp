@@ -37,25 +37,26 @@ HeaderLayout::HeaderLayout(QWidget* parent)
         }
     )");
 
-    m_logoutBtn = new QPushButton("Log Out");
-    m_logoutBtn->setStyleSheet(R"(
-        QPushButton {
-            background-color: #d9534f;
-            color: white;
-            border-radius: 8px;
-            padding: 6px 12px;
-            font-weight: bold;
-            font-size: 13px;
-        }
-        QPushButton:hover {
-            background-color: #c9302c;
-        }
-    )");
-    m_logoutBtn->setFixedHeight(36);
-    m_logoutBtn->setCursor(Qt::PointingHandCursor);
+    // m_logoutBtn = new QPushButton("Log Out");
+    // m_logoutBtn->setStyleSheet(R"(
+    //     QPushButton {
+    //         background-color: #d9534f;
+    //         color: white;
+    //         border-radius: 8px;
+    //         padding: 6px 12px;
+    //         font-weight: bold;
+    //         font-size: 13px;
+    //     }
+    //     QPushButton:hover {
+    //         background-color: #c9302c;
+    //     }
+    // )");
+    // m_logoutBtn->setFixedHeight(36);
+    // m_logoutBtn->setCursor(Qt::PointingHandCursor); DELETE SOON
 
-    connect(m_logoutBtn, &QPushButton::clicked, this, &HeaderLayout::onLogoutClicked);
+    // connect(m_logoutBtn, &QPushButton::clicked, this, &HeaderLayout::onLogoutClicked); DELETE SOON
 
+    // 🔌 Сеть и модель
     m_autocompleteNetworkManager = new QNetworkAccessManager(this);
     m_completerModel = new QStringListModel(this);
     m_cityCompleter = new QCompleter(m_completerModel, this);
@@ -64,6 +65,7 @@ HeaderLayout::HeaderLayout(QWidget* parent)
     m_cityCompleter->setCompletionMode(QCompleter::PopupCompletion);
     m_search->setCompleter(m_cityCompleter);
 
+    // Стили для всплывающих подсказок
     if (m_cityCompleter->popup()) {
         m_cityCompleter->popup()->setStyleSheet(R"(
             QAbstractItemView {
@@ -92,27 +94,24 @@ HeaderLayout::HeaderLayout(QWidget* parent)
         )");
     }
 
+    // Сигналы
     connect(m_search.get(), &QLineEdit::textEdited, this, &HeaderLayout::onSearchTextEdited);
     connect(m_autocompleteNetworkManager, &QNetworkAccessManager::finished, this, &HeaderLayout::onAutocompleteDataReceived);
     connect(m_cityCompleter, QOverload<const QString&>::of(&QCompleter::activated), this, &HeaderLayout::onCityCompletionSelected);
     connect(m_search.get(), &QLineEdit::returnPressed, this, &HeaderLayout::onSearchReturnPressed);
 
-    // Расположение: поле + отступ + кнопка
+    // В макет
     addStretch();
     addWidget(m_search.get(), 1);
     addSpacing(10);
-    addWidget(m_logoutBtn);
+    // addWidget(m_logoutBtn); DELETE SOON
     addStretch();
     setContentsMargins(10, 10, 10, 10);
 }
 
 void HeaderLayout::updateSearchPlaceholder(const QString& country, bool isCityAllowed)
 {
-    if (isCityAllowed) {
-        m_search->setPlaceholderText("Search your city...");
-    } else {
-        m_search->setPlaceholderText(QString("Search in %1...").arg(country));
-    }
+    m_search->setPlaceholderText(isCityAllowed ? "Search your city..." : QString("Search in %1...").arg(country));
 }
 
 void HeaderLayout::onSearchTextEdited(const QString& text)
@@ -141,15 +140,16 @@ void HeaderLayout::onAutocompleteDataReceived(QNetworkReply* reply)
         return;
     }
 
-    QJsonDocument jsonResponse = QJsonDocument::fromJson(reply->readAll());
+    QByteArray data = reply->readAll();
+    QJsonDocument jsonResponse = QJsonDocument::fromJson(data);
     QJsonObject jsonObject = jsonResponse.object();
 
-    QStringList suggestions;
     QJsonArray predictions = jsonObject["predictions"].toArray();
+    QStringList suggestions;
     for (const QJsonValue& value : predictions) {
-        QJsonObject prediction = value.toObject();
-        suggestions.append(prediction["description"].toString());
+        suggestions.append(value.toObject()["description"].toString());
     }
+
 
     m_completerModel->setStringList(suggestions);
     reply->deleteLater();
@@ -168,7 +168,7 @@ void HeaderLayout::onSearchReturnPressed()
     }
 }
 
-void HeaderLayout::onLogoutClicked()
-{
-    emit logoutRequested(); // Подключи это в своём основном окне к логике выхода
-}
+// void HeaderLayout::onLogoutClicked() // DELETE SOON
+// {
+//     emit logoutRequested();
+// }

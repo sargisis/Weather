@@ -110,12 +110,12 @@ RegisterWindow::RegisterWindow(QWidget *parent)
         }
 
         // Если все проверки пройдены, вызываем метод для регистрации пользователя.
-        RegisterUser(email, password);
+        onRegisterImpl(email, password);
     });
 }
 
 // Метод для регистрации нового пользователя с использованием Firebase Authentication.
-void RegisterWindow::RegisterUser(const QString &email, const QString &password) {
+void RegisterWindow::onRegisterImpl(const QString &email, const QString &password) {
     // Ваш Firebase Web API Key.
     const QString API_KEY = "AIzaSyBwbdcguYkqe8t4mtYJ8QRQgv_V6TtSL4A";
 

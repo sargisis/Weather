@@ -1,4 +1,5 @@
 #include <QApplication>
+#include <QSettings>
 #include "Auth.h"
 #include "HomePage.h"
 
@@ -9,16 +10,22 @@ int main(int argc, char *argv[])
     auto* loginWindow = new AuthWindow();
     auto* mainApp = new HomePage();
 
-    QObject::connect(loginWindow, &AuthWindow::authSuccess, [&]() {
-        loginWindow->hide();
+    QSettings settings("MyCompany", "WeatherApp");
+    const QString savedToken = settings.value("refresh_token").toString();
+    settings.sync();
+
+    if (!savedToken.isEmpty()) {
+        // Есть токен — сразу запускаем приложение
         mainApp->show();
-    });
+    } else {
+        // Нет токена — логин
+        QObject::connect(loginWindow, &AuthWindow::authSuccess, [&]() {
+            loginWindow->close();
+            mainApp->show();
+        });
 
-    QObject::connect(mainApp, &HomePage::requestLogout, [&]() {
-        mainApp->hide();
         loginWindow->show();
-    });
+    }
 
-    loginWindow->show();
     return app.exec();
 }
