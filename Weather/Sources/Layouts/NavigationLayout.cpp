@@ -61,10 +61,55 @@ void NavigationLayout::NavBarSelectedOptionButtonsImpl()
     panelLayout->addWidget(notifyBtn);
     panelLayout->addWidget(profileBtn);
 
+    // --- Избранные города ---
+    QFrame* separator = new QFrame;
+    separator->setFrameShape(QFrame::HLine);
+    separator->setFrameShadow(QFrame::Sunken);
+    separator->setStyleSheet("background-color: #333; margin-top: 20px; margin-bottom: 10px;");
+    panelLayout->addWidget(separator);
+
+    QLabel* favTitle = new QLabel("   FAVORITES");
+    favTitle->setStyleSheet("color: #777; font-size: 12px; font-weight: bold; margin-bottom: 5px;");
+    panelLayout->addWidget(favTitle);
+
+    m_favoritesLayout = new QVBoxLayout;
+    m_favoritesLayout->setSpacing(5);
+    panelLayout->addLayout(m_favoritesLayout);
+
     this->addWidget(menuFrame);
     
     // Пружина, чтобы прижать все элементы к верху
     this->addStretch();
+}
+
+void NavigationLayout::updateFavorites(const QStringList& favorites)
+{
+    if (!m_favoritesLayout) return;
+
+    // Очищаем текущие кнопки
+    QLayoutItem* item;
+    while ((item = m_favoritesLayout->takeAt(0)) != nullptr) {
+        if (item->widget()) delete item->widget();
+        delete item;
+    }
+
+    if (favorites.isEmpty()) {
+        QLabel* emptyLabel = new QLabel("   No favorites yet");
+        emptyLabel->setStyleSheet("color: #555; font-size: 13px; font-style: italic;");
+        m_favoritesLayout->addWidget(emptyLabel);
+        return;
+    }
+
+    // Добавляем новые кнопки
+    for (const QString& city : favorites) {
+        QPushButton* btn = new QPushButton("  ★ " + city);
+        btn->setStyleSheet(this->buttonStyle());
+        btn->setCursor(Qt::PointingHandCursor);
+        connect(btn, &QPushButton::clicked, this, [this, city]() {
+            emit favoriteCityClicked(city);
+        });
+        m_favoritesLayout->addWidget(btn);
+    }
 }
 
 // Возвращает стиль для кнопок в боковой панели

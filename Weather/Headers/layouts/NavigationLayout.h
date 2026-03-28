@@ -5,6 +5,7 @@
 #include <QPushButton>
 #include <QFrame>
 #include <QPropertyAnimation>
+#include <QStringList>
 #include "../Interfaces/INavIterface.h"  // Интерфейс CRTP для навигации
 #include "Layouts.h"
 
@@ -29,4 +30,14 @@ signals:
     void languageClicked();
     void notificationsClicked();
     void profileClicked();
+    
+    // Сигнал выбора избранного города
+    void favoriteCityClicked(const QString& city);
+
+public:
+    // Метод обновления списка избранных городов в сайдбаре
+    void updateFavorites(const QStringList& favorites);
+
+private:
+    QVBoxLayout* m_favoritesLayout = nullptr;
 };

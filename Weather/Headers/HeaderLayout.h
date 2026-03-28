@@ -26,8 +26,13 @@ public:
 
     // Поле ввода для поиска города
     std::unique_ptr<QLineEdit> m_search;
+    QPushButton* m_favoriteBtn = nullptr;
+    bool m_isCurrentCityFavorite = false;
+
+    void setFavoriteState(bool isFavorite);
 
 signals:
+    void favoriteToggled();
     // Сигнал испускается при выборе города пользователем
     void citySelected(const QString& text);
 
