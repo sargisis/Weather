@@ -5,6 +5,12 @@
 #include <QGridLayout>
 #include <QDebug>
 #include <QLabel>
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
+#include <QNetworkRequest>
+#include <QUrl>
+#include <QJsonDocument>
+#include <QJsonObject>
 
 HomePage::HomePage(QWidget* parent)
     : QWidget(parent)
@@ -34,6 +40,25 @@ HomePage::HomePage(QWidget* parent)
     int x = (screenGeometry.width() - this->width()) / 2;
     int y = (screenGeometry.height() - this->height()) / 2;
     this->move(x, y);
+
+    // Автоопределение локации по IP и подгрузка погоды при запуске
+    auto* ipManager = new QNetworkAccessManager(this);
+    QNetworkReply* reply = ipManager->get(QNetworkRequest(QUrl("http://ip-api.com/json/")));
+    connect(reply, &QNetworkReply::finished, this, [this, reply, ipManager]() {
+        if (reply->error() == QNetworkReply::NoError) {
+            QJsonDocument doc = QJsonDocument::fromJson(reply->readAll());
+            QString city = doc.object()["city"].toString();
+            if (!city.isEmpty()) {
+                m_header_layout->m_search->setText(city); // Ставим город в форму поиска
+                m_center_layout->fetchWeatherDataForCity(city); // Текущая погода
+                m_right_layout->fetchFutureWeather(city); // График/Прогноз погоды
+            }
+        } else {
+            qWarning() << "Failed to detect IP location:" << reply->errorString();
+        }
+        reply->deleteLater();
+        ipManager->deleteLater();
+    });
 }
 
 void HomePage::createLayout()
@@ -70,6 +95,15 @@ void HomePage::createLayout()
         if (!city.isEmpty()) {
             m_center_layout->fetchWeatherDataForCity(city);
             m_right_layout->fetchFutureWeather(city);
+        }
+    });
+
+    // Также реагируем на выбор города мышкой из выпадающего списка
+    connect(m_header_layout.get(), &HeaderLayout::citySelected, this, [this](const QString& city) {
+        if (!city.isEmpty()) {
+            m_center_layout->fetchWeatherDataForCity(city);
+            m_right_layout->fetchFutureWeather(city);
+            m_header_layout->m_search->setText(city);
         }
     });
 

@@ -1,4 +1,5 @@
 #include "../Headers/Login.h" // Включаем заголовочный файл для нашего класса LogINWindow
+#include <QJsonDocument>
 
 // Конструктор класса LogINWindow.
 // parent - родительский виджет.

@@ -14,15 +14,15 @@ find_package(Qt6 CONFIG REQUIRED COMPONENTS Widgets Network Svg)
 include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/Headers
     ${CMAKE_CURRENT_SOURCE_DIR}/Headers/layouts
-    ${CMAKE_CURRENT_SOURCE_DIR}/Headers/interfaces
+    ${CMAKE_CURRENT_SOURCE_DIR}/Headers/Interfaces
 )
 
 set(PROJECT_SOURCES
     main.cpp
 
     # Layouts
-    Sources/layouts/RightLayout.cpp
-    Sources/layouts/CenterLayout.cpp
+    Sources/Layouts/RightLayout.cpp
+    Sources/Layouts/CenterLayout.cpp
     Sources/Layouts/NavigationLayout.cpp
     Sources/Layouts.cpp
     Sources/HeaderLayout.cpp
@@ -56,10 +56,10 @@ set(PROJECT_SOURCES
     Headers/layouts/CenterLayout.h
     Headers/layouts/NavigationLayout.h
 
-    Headers/interfaces/IWindowFactory.h
-    Headers/interfaces/ILoginWindow.h
-    Headers/interfaces/IRegisterWindow.h
-    Headers/interfaces/IForgotPassword.h
+    Headers/Interfaces/IWindowFactory.h
+    Headers/Interfaces/ILoginWindow.h
+    Headers/Interfaces/IRegisterWindow.h
+    Headers/Interfaces/IForgotPassword.h
     Headers/Interfaces/INavIterface.h
 
     # Resources
