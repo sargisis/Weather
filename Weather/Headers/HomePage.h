@@ -26,6 +26,10 @@ public:
     // Создает и инициализирует все вложенные лэйауты и виджеты.
     void createLayout();
 
+    void toggleFavorite();
+    void loadFavorites();
+    void checkIfFavorite(const QString& city);
+
 private:
     // Главный макет для размещения всех блоков по сетке.
     std::unique_ptr<QGridLayout> main_layout;
@@ -42,7 +46,6 @@ private:
     // Навигационное меню слева.
     std::unique_ptr<NavigationLayout> m_navigation_layout;
 
-    // Обертки для лэйаутов — используются как контейнеры для установки на grid layout.
     QWidget* centerWidget = nullptr;
     QWidget* rightWidget = nullptr;
     QWidget* navigationWidget = nullptr;

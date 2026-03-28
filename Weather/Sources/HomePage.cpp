@@ -11,6 +11,7 @@
 #include <QUrl>
 #include <QJsonDocument>
 #include <QJsonObject>
+#include <QSettings>
 
 HomePage::HomePage(QWidget* parent)
     : QWidget(parent)
@@ -95,6 +96,7 @@ void HomePage::createLayout()
         if (!city.isEmpty()) {
             m_center_layout->fetchWeatherDataForCity(city);
             m_right_layout->fetchFutureWeather(city);
+            checkIfFavorite(city);
         }
     });
 
@@ -104,6 +106,18 @@ void HomePage::createLayout()
             m_center_layout->fetchWeatherDataForCity(city);
             m_right_layout->fetchFutureWeather(city);
             m_header_layout->m_search->setText(city);
+            checkIfFavorite(city);
+        }
+    });
+
+    // Избранное
+    connect(m_header_layout.get(), &HeaderLayout::favoriteToggled, this, &HomePage::toggleFavorite);
+    connect(m_navigation_layout.get(), &NavigationLayout::favoriteCityClicked, this, [this](const QString& city) {
+        if (!city.isEmpty()) {
+            m_center_layout->fetchWeatherDataForCity(city);
+            m_right_layout->fetchFutureWeather(city);
+            m_header_layout->m_search->setText(city);
+            checkIfFavorite(city);
         }
     });
 
@@ -127,5 +141,40 @@ void HomePage::createLayout()
     main_layout->setVerticalSpacing(10);
 
     setLayout(main_layout.get());
+
+    loadFavorites();
 }
 
+void HomePage::loadFavorites()
+{
+    QSettings settings("MyCompany", "WeatherApp");
+    QStringList favorites = settings.value("favorites").toStringList();
+    m_navigation_layout->updateFavorites(favorites);
+}
+
+void HomePage::checkIfFavorite(const QString& city)
+{
+    QSettings settings("MyCompany", "WeatherApp");
+    QStringList favorites = settings.value("favorites").toStringList();
+    m_header_layout->setFavoriteState(favorites.contains(city));
+}
+
+void HomePage::toggleFavorite()
+{
+    QString city = m_header_layout->m_search->text().trimmed();
+    if (city.isEmpty()) return;
+
+    QSettings settings("MyCompany", "WeatherApp");
+    QStringList favorites = settings.value("favorites").toStringList();
+
+    if (favorites.contains(city)) {
+        favorites.removeAll(city);
+        m_header_layout->setFavoriteState(false);
+    } else {
+        favorites.append(city);
+        m_header_layout->setFavoriteState(true);
+    }
+
+    settings.setValue("favorites", favorites);
+    m_navigation_layout->updateFavorites(favorites);
+}

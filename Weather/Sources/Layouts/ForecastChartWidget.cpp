@@ -109,8 +109,14 @@ void ForecastChartWidget::paintEvent(QPaintEvent* event) {
         }
 
         // Подписываем время
-        // Чтобы текст не слипался, печатаем время только на четных индексах (каждые 6 часов)
-        if (i < m_times.size() && (i % 2 == 0)) {
+        // Чтобы текст не слипался на узких экранах, мы скрываем каждый второй элемент.
+        // Но при расширении окна (когда шаг больше 50px), мы показываем все часы!
+        bool shouldDrawTime = true;
+        if (stepX < 50.0 && (i % 2 != 0)) {
+            shouldDrawTime = false;
+        }
+
+        if (i < m_times.size() && shouldDrawTime) {
             painter.setPen(QColor(150, 150, 150)); // Сделаем текст времени чуть бледнее
             QFont timeFont = painter.font();
             timeFont.setPointSize(8);

@@ -100,13 +100,28 @@ HeaderLayout::HeaderLayout(QWidget* parent)
     connect(m_cityCompleter, QOverload<const QString&>::of(&QCompleter::activated), this, &HeaderLayout::onCityCompletionSelected);
     connect(m_search.get(), &QLineEdit::returnPressed, this, &HeaderLayout::onSearchReturnPressed);
 
+    // Кнопка избранного
+    m_favoriteBtn = new QPushButton("☆");
+    m_favoriteBtn->setStyleSheet("font-size: 24px; color: #ffcc00; background: transparent; border: none; outline: none;");
+    m_favoriteBtn->setCursor(Qt::PointingHandCursor);
+    m_favoriteBtn->setToolTip("Toggle Favorite");
+    
+    connect(m_favoriteBtn, &QPushButton::clicked, this, [this]() {
+        emit favoriteToggled();
+    });
+
     // В макет
     addStretch();
     addWidget(m_search.get(), 1);
-    addSpacing(10);
-    // addWidget(m_logoutBtn); DELETE SOON
+    addWidget(m_favoriteBtn); // Добавляем справа от поиска
     addStretch();
     setContentsMargins(10, 10, 10, 10);
+}
+
+void HeaderLayout::setFavoriteState(bool isFavorite)
+{
+    m_isCurrentCityFavorite = isFavorite;
+    m_favoriteBtn->setText(isFavorite ? "⭐" : "☆");
 }
 
 void HeaderLayout::updateSearchPlaceholder(const QString& country, bool isCityAllowed)
