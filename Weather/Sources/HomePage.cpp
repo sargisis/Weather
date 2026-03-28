@@ -158,6 +158,22 @@ void HomePage::createLayout()
     // 2. Map Page - Наш кастомный движок карт!
     m_mapPage = new MapWidget(this);
 
+    // ----- NavigationEngine: подключаем к карте -----
+    m_navEngine = new NavigationEngine(this);
+
+    // Новый маршрут от OSRM → передаём в MapWidget для отрисовки
+    connect(m_navEngine, &NavigationEngine::routeUpdated, m_mapPage, &MapWidget::setRoute);
+
+    // GPS позиция → обновляем синюю точку на карте
+    connect(m_navEngine, &NavigationEngine::positionChanged, m_mapPage, &MapWidget::updateGpsPosition);
+
+    // Смена шага манёвра → центрируем на текущей позиции
+    connect(m_navEngine, &NavigationEngine::currentStepChanged, this, [this](RouteStep step) {
+        if (m_mapPage) {
+            m_mapPage->setCenter(step.coordinate.latitude(), step.coordinate.longitude(), 15);
+        }
+    });
+
     // 3. Settings Page
     m_settingsPage = new QWidget();
     QVBoxLayout* settingsLayout = new QVBoxLayout(m_settingsPage);

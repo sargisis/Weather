@@ -6,6 +6,7 @@
 #include "NavigationLayout.h"
 #include "MapWidget.h"
 #include "Login.h"
+#include "NavigationEngine/navigationengine.h"
 
 #include <QWidget>
 #include <memory>
@@ -57,4 +58,7 @@ private:
     QWidget* m_dashboardPage = nullptr;
     MapWidget* m_mapPage = nullptr;
     QWidget* m_settingsPage = nullptr;
+
+    // ----- Navigation Engine -----
+    NavigationEngine* m_navEngine = nullptr;
 };
