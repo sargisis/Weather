@@ -15,6 +15,7 @@ It provides live weather data, intuitive search, and detailed forecasts for any 
 
 ## ✨ Features  
 
+
 ⚡ **Live Weather Updates** – real-time temperature, humidity, and conditions  
 🌍 **Global City Search** – type any city name and get instant results  
 📅 **Forecast View** – see weather trends for the next few days  
