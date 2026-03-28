@@ -9,12 +9,21 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(Qt6 CONFIG REQUIRED COMPONENTS Widgets Network Svg)
+find_package(Qt6 REQUIRED COMPONENTS 
+    Core 
+    Gui 
+    Widgets 
+    Network 
+    Svg
+    Positioning 
+    TextToSpeech
+)
 
 include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/Headers
     ${CMAKE_CURRENT_SOURCE_DIR}/Headers/layouts
     ${CMAKE_CURRENT_SOURCE_DIR}/Headers/Interfaces
+    ${CMAKE_CURRENT_SOURCE_DIR}/Headers/NavigationEngine
 )
 
 set(PROJECT_SOURCES
@@ -66,6 +75,20 @@ set(PROJECT_SOURCES
     Headers/Interfaces/IForgotPassword.h
     Headers/Interfaces/INavIterface.h
 
+    # NavigationEngine
+    Sources/NavigationEngine/gpsservice.cpp
+    Sources/NavigationEngine/routingservice.cpp
+    Sources/NavigationEngine/routetracker.cpp
+    Sources/NavigationEngine/voiceservice.cpp
+    Sources/NavigationEngine/navigationengine.cpp
+
+    Headers/NavigationEngine/route.h
+    Headers/NavigationEngine/gpsservice.h
+    Headers/NavigationEngine/routingservice.h
+    Headers/NavigationEngine/routetracker.h
+    Headers/NavigationEngine/voiceservice.h
+    Headers/NavigationEngine/navigationengine.h
+
     # Resources
     resources/icons.qrc
 )
@@ -86,6 +109,8 @@ target_link_libraries(Weather PRIVATE
     Qt${QT_VERSION_MAJOR}::Widgets
     Qt${QT_VERSION_MAJOR}::Network
     Qt${QT_VERSION_MAJOR}::Svg
+    Qt${QT_VERSION_MAJOR}::Positioning
+    Qt${QT_VERSION_MAJOR}::TextToSpeech
 )
 
 # Настройка для macOS и Windows
