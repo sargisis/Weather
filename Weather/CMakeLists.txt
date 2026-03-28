@@ -30,6 +30,7 @@ set(PROJECT_SOURCES
 
     # Core
     Sources/HomePage.cpp
+    Sources/MapWidget.cpp
     Sources/Auth.cpp
     Sources/Register.cpp
     Sources/ForgotPassowrd.cpp
@@ -44,6 +45,7 @@ set(PROJECT_SOURCES
 
     # Headers
     Headers/HomePage.h
+    Headers/MapWidget.h
     Headers/Auth.h
     Headers/Register.h
     Headers/ForgotPassowrd.h

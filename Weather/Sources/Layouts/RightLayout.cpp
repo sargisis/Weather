@@ -161,7 +161,8 @@ void RightLayout::onForecastData(QNetworkReply* reply)
 
     // Если ошибок нет, парсим JSON-ответ.
     QJsonDocument json = QJsonDocument::fromJson(reply->readAll());
-    QJsonObject jsonObject = json.object(); 
+    QJsonDocument doc = QJsonDocument::fromJson(reply->readAll());
+    QJsonObject jsonObject = doc.object(); 
 
     if (!jsonObject.contains("list")) {
         qWarning() << "Invalid JSON response for forecast data: Missing 'list' field.";
@@ -169,6 +170,11 @@ void RightLayout::onForecastData(QNetworkReply* reply)
         reply->deleteLater();
         return;
     }
+    
+    QJsonObject coord = jsonObject["city"].toObject()["coord"].toObject();
+    double lat = coord["lat"].toDouble();
+    double lon = coord["lon"].toDouble();
+    emit coordinatesFetched(lat, lon);
 
     QJsonArray list = jsonObject["list"].toArray(); 
 

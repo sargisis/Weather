@@ -28,7 +28,10 @@ public:
     // Функция для запроса данных о будущем прогнозе погоды для указанного города.
     void fetchFutureWeather(const QString& city);
 
-private slots: // Объявление слотов (функций, которые реагируют на сигналы)
+signals:
+    void coordinatesFetched(double lat, double lon);
+
+public slots: // Объявление слотов (функций, которые реагируют на сигналы)
     // Слот, который будет вызван, когда QNetworkAccessManager завершит сетевой запрос для прогноза.
     void onForecastData(QNetworkReply* reply);
 
