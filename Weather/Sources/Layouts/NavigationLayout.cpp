@@ -61,6 +61,12 @@ void NavigationLayout::NavBarSelectedOptionButtonsImpl()
     panelLayout->addWidget(notifyBtn);
     panelLayout->addWidget(profileBtn);
 
+    // Подключаем кнопки к сигналам
+    connect(weatherBtn, &QPushButton::clicked, this, &NavigationLayout::weatherClicked);
+    connect(mapBtn, &QPushButton::clicked, this, &NavigationLayout::mapClicked);
+    connect(notifyBtn, &QPushButton::clicked, this, &NavigationLayout::notificationsClicked);
+    connect(profileBtn, &QPushButton::clicked, this, &NavigationLayout::profileClicked);
+
     // --- Избранные города ---
     QFrame* separator = new QFrame;
     separator->setFrameShape(QFrame::HLine);

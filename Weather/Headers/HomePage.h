@@ -4,6 +4,7 @@
 #include "CenterLayout.h"
 #include "HeaderLayout.h"
 #include "NavigationLayout.h"
+#include "MapWidget.h"
 #include "Login.h"
 
 #include <QWidget>
@@ -13,6 +14,7 @@
 #include <QFrame>
 #include <QHBoxLayout>
 #include <QGridLayout>
+#include <QStackedWidget>
 
 // Класс HomePage представляет основное окно приложения после авторизации.
 // Содержит разметку: заголовок (HeaderLayout), центральный блок, правую панель и навигационное меню.
@@ -46,7 +48,13 @@ private:
     // Навигационное меню слева.
     std::unique_ptr<NavigationLayout> m_navigation_layout;
 
+    // Обертки для лэйаутов — используются как контейнеры для установки на grid layout.
     QWidget* centerWidget = nullptr;
     QWidget* rightWidget = nullptr;
     QWidget* navigationWidget = nullptr;
+
+    std::unique_ptr<QStackedWidget> m_stackedWidget;
+    QWidget* m_dashboardPage = nullptr;
+    MapWidget* m_mapPage = nullptr;
+    QWidget* m_settingsPage = nullptr;
 };

@@ -27,7 +27,7 @@ public:
 signals:
     // Сигналы для взаимодействия с другими частями приложения
     void weatherClicked();
-    void languageClicked();
+    void mapClicked();
     void notificationsClicked();
     void profileClicked();
     

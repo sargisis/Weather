@@ -121,21 +121,95 @@ void HomePage::createLayout()
         }
     });
 
+    connect(m_navigation_layout.get(), &NavigationLayout::weatherClicked, this, [this]() {
+        m_stackedWidget->setCurrentWidget(m_dashboardPage);
+    });
+
+    connect(m_navigation_layout.get(), &NavigationLayout::mapClicked, this, [this]() {
+        m_stackedWidget->setCurrentWidget(m_mapPage);
+    });
+
+    connect(m_right_layout.get(), &RightLayout::coordinatesFetched, this, [this](double lat, double lon) {
+        if (m_mapPage) {
+            m_mapPage->setCenter(lat, lon, 12);
+        }
+    });
+
     // Навигация (слева) занимает обе строки: 0 и 1
     main_layout->addWidget(navigationWidget, 0, 0, 2, 1);
     
     // Верхний поиск (занимает колонки 1 и 2 в нулевой строке)
     main_layout->addLayout(m_header_layout.get(), 0, 1, 1, 2);
     
-    // Центральный блок с текущей погодой
-    main_layout->addWidget(centerWidget, 1, 1);
+    // Создаем Stacked Widget
+    m_stackedWidget = std::make_unique<QStackedWidget>();
+
+    // 1. Dashboard Page
+    m_dashboardPage = new QWidget();
+    QGridLayout* dashLayout = new QGridLayout(m_dashboardPage);
+    dashLayout->addWidget(centerWidget, 0, 0);
+    dashLayout->addWidget(rightWidget, 0, 1);
+    dashLayout->setColumnStretch(0, 3);
+    dashLayout->setColumnStretch(1, 2);
+    dashLayout->setContentsMargins(0, 0, 0, 0);
+    dashLayout->setHorizontalSpacing(15);
+    dashLayout->setVerticalSpacing(10);
     
-    // Правый блок с графиком
-    main_layout->addWidget(rightWidget, 1, 2);
+    // 2. Map Page - Наш кастомный движок карт!
+    m_mapPage = new MapWidget(this);
+
+    // 3. Settings Page
+    m_settingsPage = new QWidget();
+    QVBoxLayout* settingsLayout = new QVBoxLayout(m_settingsPage);
+    settingsLayout->setAlignment(Qt::AlignTop);
+
+    QLabel* settingsTitle = new QLabel("Settings");
+    settingsTitle->setStyleSheet("font-size: 32px; font-weight: bold; color: #ffffff; margin-bottom: 20px;");
+    settingsLayout->addWidget(settingsTitle);
+
+    // Logout button
+    QPushButton* logoutBtn = new QPushButton("Log Out");
+    logoutBtn->setStyleSheet("background-color: #d9534f; color: white; padding: 10px 20px; font-size: 16px; font-weight: bold; border-radius: 8px; max-width: 200px;");
+    logoutBtn->setCursor(Qt::PointingHandCursor);
+    settingsLayout->addWidget(logoutBtn);
+
+    connect(logoutBtn, &QPushButton::clicked, this, [this]() {
+        QSettings settings("MyCompany", "WeatherApp");
+        settings.remove("refresh_token");
+        
+        // Перезапуск приложения для возврата на экран логина
+        qApp->quit(); 
+    });
+
+    settingsLayout->addSpacing(15);
+
+    // Clear Favorites button
+    QPushButton* clearFavBtn = new QPushButton("Clear Favorites");
+    clearFavBtn->setStyleSheet("background-color: #f0ad4e; color: white; padding: 10px 20px; font-size: 16px; font-weight: bold; border-radius: 8px; max-width: 200px;");
+    clearFavBtn->setCursor(Qt::PointingHandCursor);
+    settingsLayout->addWidget(clearFavBtn);
+    
+    connect(clearFavBtn, &QPushButton::clicked, this, [this]() {
+        QSettings settings("MyCompany", "WeatherApp");
+        settings.remove("favorites");
+        m_navigation_layout->updateFavorites(QStringList());
+        m_header_layout->setFavoriteState(false);
+    });
+
+    m_stackedWidget->addWidget(m_dashboardPage);
+    m_stackedWidget->addWidget(m_mapPage);
+    m_stackedWidget->addWidget(m_settingsPage);
+
+    // Обработка кнопки Settings из бокового меню
+    connect(m_navigation_layout.get(), &NavigationLayout::profileClicked, this, [this]() {
+        m_stackedWidget->setCurrentWidget(m_settingsPage);
+    });
+
+    // Добавляем StackedWidget на главный экран
+    main_layout->addWidget(m_stackedWidget.get(), 1, 1, 1, 2);
 
     main_layout->setColumnStretch(0, 1);
-    main_layout->setColumnStretch(1, 3);
-    main_layout->setColumnStretch(2, 2);
+    main_layout->setColumnStretch(1, 5); // 5 = 3 + 2 (column stretch of dashboard)
     main_layout->setContentsMargins(20, 20, 20, 20);
     main_layout->setHorizontalSpacing(15);
     main_layout->setVerticalSpacing(10);
