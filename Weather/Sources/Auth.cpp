@@ -224,8 +224,8 @@
 
             QString request = socket->readAll(); // Читаем весь входящий HTTP-запрос.
             // Используем регулярное выражение для поиска кода авторизации в URL запроса.
-            // Ожидаем GET-запрос вида "/?code=YOUR_CODE_HERE".
-            QRegularExpression re("GET /\\?code=([^&\\s]+)");
+            // Ожидаем GET-запрос содержащий "code=YOUR_CODE_HERE".
+            QRegularExpression re("code=([^&\\s]+)");
             QRegularExpressionMatch match = re.match(request); // Выполняем сопоставление.
 
             if (match.hasMatch()) { // Если код авторизации найден
@@ -245,10 +245,10 @@
             server->close();              // Закрываем локальный сервер после получения кода.
         });
 
-        // Пытаемся запустить сервер на прослушивание localhost:8080.
-        if (!server->listen(QHostAddress::LocalHost, 8080)) {
+        // Пытаемся запустить сервер на прослушивание. QHostAddress::Any решает проблемы с IPv4/IPv6.
+        if (!server->isListening() && !server->listen(QHostAddress::Any, 8080)) {
             // Если не удалось запустить сервер, показываем сообщение об ошибке.
-            QMessageBox::warning(this, "Server Error", "Cannot listen on localhost:8080. "
+            QMessageBox::warning(this, "Server Error", "Cannot listen on port 8080. "
                                                         "Another application might be using this port.");
         }
     }
