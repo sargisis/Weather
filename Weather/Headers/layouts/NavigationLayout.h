@@ -23,18 +23,10 @@ public:
     // Общий стиль для всех кнопок
     QString buttonStyle() const;
 
-private slots:
-    // Показывает / скрывает панель с анимацией
-    void toggleExtraPanel();
-
 signals:
     // Сигналы для взаимодействия с другими частями приложения
     void weatherClicked();
     void languageClicked();
     void notificationsClicked();
     void profileClicked();
-
-private:
-    QWidget* m_extraPanel = nullptr;  // Панель с кнопками
-    bool m_isPanelVisible = false;    // Состояние панели (открыта/закрыта)
 };

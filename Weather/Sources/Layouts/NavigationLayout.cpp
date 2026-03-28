@@ -2,124 +2,91 @@
 #include <QLabel>
 #include <QPushButton>
 #include <QIcon>
+#include <QVBoxLayout>
 
 // Конструктор NavigationLayout
-// Здесь вызывается функция отрисовки элементов навигации
 NavigationLayout::NavigationLayout(QWidget* parent)
     : QVBoxLayout()
 {
     NavBarSelectedOptionButtons();  // Отрисовываем кнопки и панель
 }
 
-// Основная функция, реализующая отрисовку боковой панели и кнопки её открытия
+// Основная функция, реализация боковой панели
 void NavigationLayout::NavBarSelectedOptionButtonsImpl()
 {
-    // Кнопка для открытия/закрытия панели
-    QPushButton* toggleBtn = new QPushButton("Navigation");
-    toggleBtn->setIcon(QIcon(":/icons/list.svg"));  // Иконка меню (гамбургер)
-    toggleBtn->setStyleSheet(R"(
-        QPushButton {
-            font-size: 13px;
-            background-color: blue;
-            color: white;
-            font-weight: bold;
-            border-radius: 8px;
-            padding: 8px 16px;
-        }
-        QPushButton:hover {
-            background-color: black;
-        }
-    )");
+    this->setContentsMargins(10, 10, 10, 10);
+    this->setSpacing(20);
+    this->setAlignment(Qt::AlignTop);
 
-    // При нажатии на кнопку вызывается слот для анимации панели
-    connect(toggleBtn, &QPushButton::clicked, this, &NavigationLayout::toggleExtraPanel);
-    this->addWidget(toggleBtn);  // Добавляем кнопку в основной лейаут
-
-    // Создаём боковую панель с кнопками
-    m_extraPanel = new QFrame;
-    m_extraPanel->setStyleSheet(R"(
-        QFrame {
-            background-color: #333;
-            border: 1px solid #555;
-            border-radius: 10px;
+    // --- Логотип / Название приложения ---
+    QLabel* logoLabel = new QLabel("  Meteorite"); 
+    logoLabel->setStyleSheet(R"(
+        QLabel {
+            color: #ffffff;
+            font-size: 22px;
+            font-weight: 900;
+            padding: 10px 5px;
+            letter-spacing: 1px;
         }
     )");
-    m_extraPanel->setVisible(false);         // Скрыта по умолчанию
-    m_extraPanel->setMaximumWidth(220);      // Ограничиваем максимальную ширину
+    this->addWidget(logoLabel);
 
-    // Лейаут для кнопок внутри панели
-    auto* panelLayout = new QVBoxLayout(m_extraPanel);
-    panelLayout->setContentsMargins(10, 10, 10, 10);
-    panelLayout->setSpacing(12);
+    // --- Контейнер для кнопок меню ---
+    QFrame* menuFrame = new QFrame;
+    menuFrame->setStyleSheet("background: transparent; border: none;");
+    auto* panelLayout = new QVBoxLayout(menuFrame);
+    panelLayout->setContentsMargins(0, 0, 0, 0);
+    panelLayout->setSpacing(10);
 
-    // Кнопка: Weather Tools
-    QPushButton* weatherBtn = new QPushButton("  Weather Tools");
-    weatherBtn->setIcon(QIcon(":/icons/nut.svg"));
-    weatherBtn->setStyleSheet(buttonStyle());
+    // Вспомогательная лямбда для создания стильных кнопок
+    auto createMenuButton = [this](const QString& text, const QString& iconPath) {
+        QPushButton* btn = new QPushButton("  " + text);
+        if (!iconPath.isEmpty()) {
+            btn->setIcon(QIcon(iconPath));
+            btn->setIconSize(QSize(20, 20));
+        }
+        btn->setStyleSheet(this->buttonStyle());
+        btn->setCursor(Qt::PointingHandCursor);
+        return btn;
+    };
+
+    // Создаем кнопки, пытаемся использовать иконки, которые уже были или точно существуют
+    QPushButton* weatherBtn = createMenuButton("Dashboard", ":/icons/sun.svg"); 
+    QPushButton* mapBtn = createMenuButton("Map", ":/icons/globe-simple.svg");
+    QPushButton* notifyBtn = createMenuButton("Notifications", ":/icons/bell-simple-ringing.svg");
+    QPushButton* profileBtn = createMenuButton("Settings", ":/icons/user.svg");
+
     panelLayout->addWidget(weatherBtn);
-
-    // Кнопка: Language Settings
-    QPushButton* languageBtn = new QPushButton("  Language Settings");
-    languageBtn->setIcon(QIcon(":/icons/globe-simple.svg"));
-    languageBtn->setStyleSheet(buttonStyle());
-    panelLayout->addWidget(languageBtn);
-
-    // Кнопка: Notifications
-    QPushButton* notifyBtn = new QPushButton("  Notifications");
-    notifyBtn->setIcon(QIcon(":/icons/bell-simple-ringing.svg"));
-    notifyBtn->setStyleSheet(buttonStyle());
+    panelLayout->addWidget(mapBtn);
     panelLayout->addWidget(notifyBtn);
-
-    // Кнопка: Profile
-    QPushButton* profileBtn = new QPushButton("  Profile");
-    profileBtn->setIcon(QIcon(":/icons/user.svg"));
-    profileBtn->setStyleSheet(buttonStyle());
     panelLayout->addWidget(profileBtn);
 
-    // Добавляем панель и отступ вниз
-    this->addWidget(m_extraPanel);
-    this->addStretch();  // Прижимает всё вверх
-}
-
-// Анимация раскрытия/скрытия боковой панели
-void NavigationLayout::toggleExtraPanel()
-{
-    if (!m_extraPanel) return;
-
-    // Анимация ширины панели
-    QPropertyAnimation* animation = new QPropertyAnimation(m_extraPanel, "maximumWidth");
-    animation->setDuration(200);
-    animation->setStartValue(m_isPanelVisible ? 220 : 0);
-    animation->setEndValue(m_isPanelVisible ? 0 : 220);
-    animation->setEasingCurve(QEasingCurve::InOutCubic);
-
-    m_isPanelVisible = !m_isPanelVisible;
-    m_extraPanel->setVisible(true);  // Всегда делаем видимой, пока идёт анимация
-
-    // После завершения анимации можно скрыть
-    connect(animation, &QPropertyAnimation::finished, [this]() {
-        if (!m_isPanelVisible) {
-            m_extraPanel->setVisible(false);
-        }
-    });
-
-    animation->start(QAbstractAnimation::DeleteWhenStopped);  // Удалить после завершения
+    this->addWidget(menuFrame);
+    
+    // Пружина, чтобы прижать все элементы к верху
+    this->addStretch();
 }
 
 // Возвращает стиль для кнопок в боковой панели
 QString NavigationLayout::buttonStyle() const
 {
+    // Стиль вкладок (боковое меню) без фона изначально, с hover-эффектом (светлеет)
     return R"(
         QPushButton {
-            background-color: #444;
-            color: white;
+            background-color: transparent;
+            color: #b0b0b0;
+            font-size: 15px;
             font-weight: bold;
-            border-radius: 6px;
-            padding: 8px 12px;
+            border-radius: 8px;
+            padding: 10px 15px;
             text-align: left;
         }
         QPushButton:hover {
-            background-color: #555;
+            background-color: #2a2a2a;
+            color: #ffffff;
+        }
+        QPushButton:pressed {
+            background-color: #3b3b3b;
         }
     )";
 }
