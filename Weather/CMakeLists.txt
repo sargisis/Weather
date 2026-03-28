@@ -24,6 +24,7 @@ set(PROJECT_SOURCES
     Sources/Layouts/RightLayout.cpp
     Sources/Layouts/CenterLayout.cpp
     Sources/Layouts/NavigationLayout.cpp
+    Sources/Layouts/ForecastChartWidget.cpp
     Sources/Layouts.cpp
     Sources/HeaderLayout.cpp
 
@@ -55,6 +56,7 @@ set(PROJECT_SOURCES
     Headers/layouts/RightLayout.h
     Headers/layouts/CenterLayout.h
     Headers/layouts/NavigationLayout.h
+    Headers/layouts/ForecastChartWidget.h
 
     Headers/Interfaces/IWindowFactory.h
     Headers/Interfaces/ILoginWindow.h
