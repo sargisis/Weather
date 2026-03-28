@@ -11,7 +11,7 @@
 #include <QDebug>           // Для вывода отладочных сообщений (qWarning)
 #include <QSvgRenderer>     // Для рендеринга SVG-изображений
 #include <QPainter>         // Для рисования на QPixmap
-
+#include <QGridLayout>      // Для сетки виджетов под графиком
 // Реализация функции renderSvg
 // Эта функция берет путь к SVG-файлу, базовый размер и коэффициент масштабирования DPI
 // и возвращает QPixmap, готовый для отображения на экране.
@@ -64,6 +64,53 @@ RightLayout::RightLayout(QWidget* parent)
     connect(networkManager.get(), &QNetworkAccessManager::finished, this, &RightLayout::onForecastData);
 }
 
+// Реализация создания карточек-метрик под графиком
+QWidget* RightLayout::createMetricCard(const QString& title, const QString& iconPath, QLabel*& valueLabelOut)
+{
+    QWidget* card = new QWidget;
+    card->setObjectName("metricCard");
+    card->setStyleSheet(R"(
+        #metricCard {
+            background-color: #2d2d2d;
+            border-radius: 12px;
+        }
+        QLabel {
+            color: #ffffff;
+            background: transparent;
+        }
+    )");
+
+    QVBoxLayout* layout = new QVBoxLayout(card);
+    layout->setContentsMargins(15, 15, 15, 15);
+    layout->setSpacing(10);
+
+    // Верхняя часть: Иконка + Заголовок
+    QHBoxLayout* topLayout = new QHBoxLayout;
+    topLayout->setContentsMargins(0, 0, 0, 0);
+    topLayout->setSpacing(8);
+    
+    qreal screenPixelRatio = QGuiApplication::primaryScreen() ? QGuiApplication::primaryScreen()->devicePixelRatio() : 1.0;
+    QLabel* iconLabel = new QLabel;
+    iconLabel->setFixedSize(18, 18);
+    iconLabel->setPixmap(renderSvg(iconPath, QSize(18, 18), screenPixelRatio));
+
+    QLabel* titleLabel = new QLabel(title);
+    titleLabel->setStyleSheet("color: #aaaaaa; font-size: 13px; font-weight: bold;");
+
+    topLayout->addWidget(iconLabel);
+    topLayout->addWidget(titleLabel);
+    topLayout->addStretch();
+    
+    // Нижняя часть: Значение
+    valueLabelOut = new QLabel("—");
+    valueLabelOut->setStyleSheet("font-size: 22px; font-weight: bold;");
+    
+    layout->addLayout(topLayout);
+    layout->addWidget(valueLabelOut);
+    
+    return card;
+}
+
 // Реализация функции createLayouts для настройки внешнего вида макета
 void RightLayout::createLayouts()
 {
@@ -73,6 +120,23 @@ void RightLayout::createLayouts()
 
     m_chartWidget = new ForecastChartWidget();
     this->addWidget(m_chartWidget);
+
+    // Сетка 2x2 для нижних показателей
+    QGridLayout* gridLayout = new QGridLayout;
+    gridLayout->setSpacing(15);
+    
+    QWidget* feelsLikeCard = createMetricCard("Feels Like", ":/icons/thermometer-simple.svg", m_feelsLikeValueLabel);
+    QWidget* visibilityCard = createMetricCard("Visibility", ":/icons/cloud-fog.svg", m_visibilityValueLabel);
+    QWidget* sunriseCard = createMetricCard("Sunrise", ":/icons/sun.svg", m_sunriseValueLabel);
+    QWidget* sunsetCard = createMetricCard("Sunset", ":/icons/sun.svg", m_sunsetValueLabel); // Используем солнце, если луны вдруг нет
+
+    gridLayout->addWidget(feelsLikeCard, 0, 0);
+    gridLayout->addWidget(visibilityCard, 0, 1);
+    gridLayout->addWidget(sunriseCard, 1, 0);
+    gridLayout->addWidget(sunsetCard, 1, 1);
+
+    this->addLayout(gridLayout);
+    this->addStretch(); // Выталкиваем всё наверх, чтобы не растягивалось
 }
 
 // Функция для запроса данных о будущем прогнозе погоды для указанного города.
@@ -135,6 +199,30 @@ void RightLayout::onForecastData(QNetworkReply* reply)
     }
 
     m_chartWidget->updateData(temps, times, icons);
+
+    // Извлекаем "Feels Like" и "Visibility" из первого элемента списка
+    if (!list.isEmpty()) {
+        auto firstEntry = list[0].toObject();
+        double feelsLike = firstEntry["main"].toObject()["feels_like"].toDouble();
+        int visibility = firstEntry["visibility"].toInt();
+        
+        if (m_feelsLikeValueLabel) m_feelsLikeValueLabel->setText(QString::number(feelsLike, 'f', 1) + "°C");
+        if (m_visibilityValueLabel) m_visibilityValueLabel->setText(QString::number(visibility / 1000.0, 'f', 1) + " km");
+    }
+
+    // Извлекаем Sunrise и Sunset из объекта city
+    if (jsonObject.contains("city")) {
+        auto cityObj = jsonObject["city"].toObject();
+        qint64 sunriseTs = cityObj["sunrise"].toInteger();
+        qint64 sunsetTs = cityObj["sunset"].toInteger();
+        qint64 tzOffset = cityObj["timezone"].toInteger();
+
+        QDateTime srTime = QDateTime::fromSecsSinceEpoch(sunriseTs, Qt::UTC).addSecs(tzOffset);
+        QDateTime ssTime = QDateTime::fromSecsSinceEpoch(sunsetTs, Qt::UTC).addSecs(tzOffset);
+
+        if (m_sunriseValueLabel) m_sunriseValueLabel->setText(srTime.toString("HH:mm"));
+        if (m_sunsetValueLabel) m_sunsetValueLabel->setText(ssTime.toString("HH:mm"));
+    }
 
     reply->deleteLater();
 }

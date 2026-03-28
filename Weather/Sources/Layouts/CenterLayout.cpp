@@ -65,6 +65,10 @@ void CenterLayout::createLayouts()
             background-color: #222;
             border-radius: 20px;
         }
+        #paramRow {
+            background-color: #2d2d2d;
+            border-radius: 12px;
+        }
         QLabel {
             color: white;
             font-size: 16px;
@@ -79,11 +83,12 @@ void CenterLayout::createLayouts()
             font-size: 16px;
             color: #aaa;
             qproperty-alignment: AlignCenter;
+            margin-bottom: 10px;
         }
     )");
 
     weatherIcon = new QLabel; // Создаем QLabel для отображения главной иконки погоды.
-    weatherIcon->setFixedSize(40, 40); // Устанавливаем фиксированный размер для иконки.
+    weatherIcon->setFixedSize(100, 100); // Устанавливаем увеличенный 'геройский' размер для главной иконки!
     weatherIcon->setAlignment(Qt::AlignCenter); // Выравниваем иконку по центру.
     weatherIcon->setStyleSheet("background: transparent;"); // Делаем фон прозрачным.
     layout->addWidget(weatherIcon); // Добавляем иконку в макет.
@@ -115,8 +120,9 @@ void CenterLayout::createLayouts()
     // Создаем строки для отображения давления, влажности, скорости ветра и времени обновления.
     for (int i = 0; i < paramTexts.size(); ++i) {
         auto* row = new QWidget; // Создаем виджет-контейнер для каждой строки.
+        row->setObjectName("paramRow"); // Применяем стиль 'пилюли' из CSS выше
         auto* rowLayout = new QHBoxLayout(row); // Горизонтальный макет для иконки и текста.
-        rowLayout->setContentsMargins(0, 0, 0, 0); // Без отступов.
+        rowLayout->setContentsMargins(15, 10, 15, 10); // Внутренние отступы для красоты
         rowLayout->setSpacing(10); // Пространство между иконкой и текстом.
 
         QLabel* iconLabel = new QLabel; // Метка для маленькой иконки параметра.
@@ -246,7 +252,7 @@ void CenterLayout::onWeatherDataReceived(QNetworkReply* reply)
     if (QGuiApplication::primaryScreen()) {
         screenPixelRatio = QGuiApplication::primaryScreen()->devicePixelRatio();
     }
-    weatherIcon->setPixmap(renderSvg(iconPath, QSize(40, 40), screenPixelRatio));
+    weatherIcon->setPixmap(renderSvg(iconPath, QSize(100, 100), screenPixelRatio));
 
     reply->deleteLater(); // Удаляем объект QNetworkReply.
 }

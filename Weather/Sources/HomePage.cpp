@@ -107,9 +107,16 @@ void HomePage::createLayout()
         }
     });
 
-    main_layout->addLayout(m_header_layout.get(), 0, 0, 1, 3);
-    main_layout->addWidget(navigationWidget, 1, 0);
+    // Навигация (слева) занимает обе строки: 0 и 1
+    main_layout->addWidget(navigationWidget, 0, 0, 2, 1);
+    
+    // Верхний поиск (занимает колонки 1 и 2 в нулевой строке)
+    main_layout->addLayout(m_header_layout.get(), 0, 1, 1, 2);
+    
+    // Центральный блок с текущей погодой
     main_layout->addWidget(centerWidget, 1, 1);
+    
+    // Правый блок с графиком
     main_layout->addWidget(rightWidget, 1, 2);
 
     main_layout->setColumnStretch(0, 1);
